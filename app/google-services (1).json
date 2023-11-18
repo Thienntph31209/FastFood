@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "409588451250",
+    "project_id": "fastfood-a4a24",
+    "storage_bucket": "fastfood-a4a24.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:409588451250:android:9a89e85b36a5299bfa86ab",
+        "android_client_info": {
+          "package_name": "com.example.fastfood"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJwlbqk9yKNK_5dwu2NbM53oIUo05rnfA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
