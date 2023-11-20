@@ -22,7 +22,7 @@
             android:name=".List_Activity.Activity_Management.Product_Manager"
             android:exported="false" />
         <activity
-            android:name=".List_Activity.MainActivity_Admin"
+            android:name=".List_Activity.MainActivity_User"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,8 +31,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".List_Activity.MainActivity_User"
+            android:name=".List_Activity.MainActivity_Admin"
             android:exported="true" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

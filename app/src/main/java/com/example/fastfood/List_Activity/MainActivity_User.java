@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.fastfood.Adapter.Menu_User_Adapter;
-import com.example.fastfood.Fragment.Fragment_User.Fragment_User_Cart;
+import com.example.fastfood.Fragment.Fragment_User.Fragment_User_Product;
 import com.example.fastfood.Fragment.Fragment_User.Fragment_User_Main;
 import com.example.fastfood.Fragment.Fragment_User.Fragment_User_Notification;
 import com.example.fastfood.Fragment.Fragment_User.Fragment_User_Personal_Information;
@@ -36,7 +36,7 @@ public class MainActivity_User extends AppCompatActivity {
 
     private void initView() {
         list.add(new Fragment_User_Main());
-        list.add(new Fragment_User_Cart());
+        list.add(new Fragment_User_Product());
         list.add(new Fragment_User_Notification());
         list.add(new Fragment_User_Personal_Information());
         adapter = new Menu_User_Adapter(this, list);
