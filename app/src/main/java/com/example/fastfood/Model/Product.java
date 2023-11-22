@@ -1,60 +1,63 @@
 package com.example.fastfood.Model;
 
 public class Product {
-    private String tv_name_product;
-    private String img_product;
-    private String product_type;
-
-    public String getTv_describe_product() {
-        return tv_describe_product;
+    private String Id, Describe, Img_Product, Name, Product_Type_Id;
+    private int Price;
+    public  Product(){}
+    public Product(String id, String describe, String img_Product, String name, String product_Type_Id, int price) {
+        Id = id;
+        Describe = describe;
+        Img_Product = img_Product;
+        Name = name;
+        Product_Type_Id = product_Type_Id;
+        Price = price;
     }
 
-    public void setTv_describe_product(String tv_describe_product) {
-        this.tv_describe_product = tv_describe_product;
+    public String getId() {
+        return Id;
     }
 
-    private String tv_describe_product;
-    private int tv_price_product;
-    public Product(){
-
-    }
-    public Product(String tv_name_product, String img_product, String product_type, String tv_describe_product, int tv_price_product) {
-        this.tv_name_product = tv_name_product;
-        this.tv_describe_product = tv_describe_product;
-        this.img_product = img_product;
-        this.product_type = product_type;
-        this.tv_price_product = tv_price_product;
+    public void setId(String id) {
+        Id = id;
     }
 
-    public String getTv_name_product() {
-        return tv_name_product;
+    public String getDescribe() {
+        return Describe;
     }
 
-    public void setTv_name_product(String tv_name_product) {
-        this.tv_name_product = tv_name_product;
+    public void setDescribe(String describe) {
+        Describe = describe;
     }
 
-    public String getImg_product() {
-        return img_product;
+    public String getImg_Product() {
+        return Img_Product;
     }
 
-    public void setImg_product(String img_product) {
-        this.img_product = img_product;
+    public void setImg_Product(String img_Product) {
+        Img_Product = img_Product;
     }
 
-    public String getProduct_type() {
-        return product_type;
+    public String getName() {
+        return Name;
     }
 
-    public void setProduct_type(String product_type) {
-        this.product_type = product_type;
+    public void setName(String name) {
+        Name = name;
     }
 
-    public int getTv_price_product() {
-        return tv_price_product;
+    public String getProduct_Type_Id() {
+        return Product_Type_Id;
     }
 
-    public void setTv_price_product(int tv_price_product) {
-        this.tv_price_product = tv_price_product;
+    public void setProduct_Type_Id(String product_Type_Id) {
+        Product_Type_Id = product_Type_Id;
+    }
+
+    public int getPrice() {
+        return Price;
+    }
+
+    public void setPrice(int price) {
+        Price = price;
     }
 }

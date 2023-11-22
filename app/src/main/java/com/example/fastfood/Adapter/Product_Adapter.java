@@ -20,49 +20,46 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class Product_Adapter extends RecyclerView.Adapter<Product_Adapter.ViewHolder>{
-    Context context;
-    ArrayList<Product> list;
-
-    public Product_Adapter(Context context, ArrayList<Product> list) {
-        this.context = context;
-        this.list = list;
+public class Product_Adapter extends FirebaseRecyclerAdapter<Product,Product_Adapter.ViewHolder>{
+    public Product_Adapter(@NonNull FirebaseRecyclerOptions<Product> options) {
+        super(options);
+    }
+    @Override
+    protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Product model) {
+        holder.tv_name_product.setText(model.getName());
+        holder.tv_describe_product.setText(model.getDescribe());
+        holder.tv_pdt_product.setText(model.getProduct_Type_Id());
+        holder.tv_id_product.setText(model.getId());
+        holder.tv_price_product.setText(String.format("%d",model.getPrice())+"K");
+        Glide.with(holder.img_product.getContext())
+                .load(model.getImg_Product())
+                .placeholder(com.firebase.ui.database.R.drawable.common_google_signin_btn_icon_dark)
+                .error(com.firebase.ui.database.R.drawable.common_google_signin_btn_icon_dark_normal)
+                .into(holder.img_product);
     }
 
     @NonNull
     @Override
-    public Product_Adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.item_product,parent,false);
-
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product,parent,false);
         return new ViewHolder(v);
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull Product_Adapter.ViewHolder holder, int position) {
-        Product product = list.get(position);
-        holder.tv_name_product.setText(product.getTv_name_product());
-        holder.tv_describe_product.setText(product.getTv_describe_product());
-        holder.tv_price_product.setText(product.getTv_price_product());
-        Picasso.get().load(product.getImg_product()).into(holder.img_product);
-    }
-
-    @Override
-    public int getItemCount() {
-        return list.size();
-    }
-
-    public static class ViewHolder extends  RecyclerView.ViewHolder{
-        TextView tv_name_product, tv_describe_product, tv_price_product;
+    class ViewHolder extends  RecyclerView.ViewHolder{
+        TextView tv_name_product, tv_describe_product, tv_price_product, tv_pdt_product, tv_id_product;
         ImageView img_product;
         Button btn_add_product;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tv_name_product = itemView.findViewById(R.id.tv_name_product);
+            tv_name_product = itemView.findViewById(R.id.name_item_product);
             tv_describe_product = itemView.findViewById(R.id.tv_describe_product);
             tv_price_product = itemView.findViewById(R.id.tv_price_product);
+            tv_pdt_product = itemView.findViewById(R.id.tv_pdt_product);
+            tv_id_product = itemView.findViewById(R.id.tv_id_product);
             img_product = itemView.findViewById(R.id.img_product);
             btn_add_product = itemView.findViewById(R.id.btn_add_product);
-
         }
     }
+
 }

@@ -6,11 +6,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.fastfood.Adapter.Product_Adapter;
+import com.example.fastfood.List_Activity.MainActivity_User;
 import com.example.fastfood.Model.Product;
 import com.example.fastfood.R;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -23,42 +26,44 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class Product_Manager extends AppCompatActivity {
-    ImageView btn_more_cartUser;
-    TextView name_cart;
+    ImageView btn_more_product, btn_back_product;
     RecyclerView rcv_product;
     Product_Adapter adapter;
-    ArrayList<Product> list;
-    DatabaseReference databaseReference;
-
-
-
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_manager);
 
-        btn_more_cartUser = findViewById(R.id.btn_more_product);
-        name_cart = findViewById(R.id.tv_name_product);
-        rcv_product = findViewById(R.id.rcv_product);
-        rcv_product.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new Product_Adapter(this,list);
-        rcv_product.setAdapter(adapter);
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        btn_more_product = findViewById(R.id.btn_more_product);
+        btn_back_product = findViewById(R.id.btn_back_product);
+        btn_back_product.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot: snapshot.getChildren() ){
-                    Product product = dataSnapshot.getValue(Product.class);
-                    list.add(product);
-                }
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+            public void onClick(View view) {
+                Intent intent = new Intent(Product_Manager.this, Product_Type_Manager.class);
+                startActivity(intent);
+                finish();
             }
         });
+        rcv_product = findViewById(R.id.rcv_product);
+        rcv_product.setLayoutManager(new LinearLayoutManager(this));
+        FirebaseRecyclerOptions<Product> options =
+                new FirebaseRecyclerOptions.Builder<Product>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Product"),Product.class)
+                        .build();
+        adapter = new Product_Adapter(options);
+        rcv_product.setAdapter(adapter);
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapter.stopListening();
     }
 }
