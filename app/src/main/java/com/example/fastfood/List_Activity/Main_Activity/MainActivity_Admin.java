@@ -1,4 +1,4 @@
-package com.example.fastfood.List_Activity;
+package com.example.fastfood.List_Activity.Main_Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +19,7 @@ import com.example.fastfood.Fragment.Fragment_Admin.Fragment_Admin_Chart;
 import com.example.fastfood.Fragment.Fragment_Admin.Fragment_Admin_Notification;
 import com.example.fastfood.Fragment.Fragment_Admin.Fragment_Admin_Personal_Information;
 import com.example.fastfood.List_Activity.Activity_Management.Bill_Manager;
-import com.example.fastfood.List_Activity.Activity_Management.Employee_Manager;
+import com.example.fastfood.List_Activity.Activity_Management.User_Manager;
 import com.example.fastfood.List_Activity.Activity_Management.Product_Manager;
 import com.example.fastfood.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -79,7 +79,7 @@ public class MainActivity_Admin extends AppCompatActivity {
         employee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity_Admin.this, Employee_Manager.class));
+                startActivity(new Intent(MainActivity_Admin.this, User_Manager.class));
             }
         });
 

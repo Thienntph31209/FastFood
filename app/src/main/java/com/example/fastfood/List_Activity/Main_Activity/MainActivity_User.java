@@ -1,4 +1,4 @@
-package com.example.fastfood.List_Activity;
+package com.example.fastfood.List_Activity.Main_Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
