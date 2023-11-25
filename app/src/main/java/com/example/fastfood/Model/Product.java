@@ -3,6 +3,7 @@ package com.example.fastfood.Model;
 public class Product {
     private String Id, Describe, Img_Product, Name, Product_Type_Id;
     private int Price;
+
     public  Product(){}
     public Product(String id, String describe, String img_Product, String name, String product_Type_Id, int price) {
         Id = id;
@@ -11,8 +12,8 @@ public class Product {
         Name = name;
         Product_Type_Id = product_Type_Id;
         Price = price;
-    }
 
+    }
     public String getId() {
         return Id;
     }
