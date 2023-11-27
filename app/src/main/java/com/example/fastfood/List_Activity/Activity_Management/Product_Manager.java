@@ -19,8 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fastfood.Adapter.Product_Adapter;
-import com.example.fastfood.List_Activity.MainActivity_Admin;
-import com.example.fastfood.List_Activity.MainActivity_User;
+import com.example.fastfood.List_Activity.Main_Activity.MainActivity_Admin;
 import com.example.fastfood.Model.Product;
 import com.example.fastfood.R;
 import com.firebase.ui.database.FirebaseRecyclerOptions;

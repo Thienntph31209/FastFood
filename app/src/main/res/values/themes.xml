@@ -5,6 +5,7 @@
     </style>
 
     <style name="Theme.FastFood" parent="Base.Theme.FastFood" />
+
     <style name="themeuser" parent="Theme.Material3.DayNight.NoActionBar">
 
     </style>

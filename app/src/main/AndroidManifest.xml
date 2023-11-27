@@ -56,22 +56,9 @@
             android:name=".List_Activity.Activity_Login.Enter_Location"
             android:exported="false" />
         <activity
-            android:name=".List_Activity.Activity_Login.Download_Image"
-            android:exported="false" />
-        <activity
             android:name=".List_Activity.Activity_Login.Enter_Information"
             android:exported="false" />
         <activity
-            android:name=".List_Activity.MainActivity_User"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".List_Activity.MainActivity_Admin"
             android:name=".List_Activity.Activity_Login.Main_Login"
             android:exported="true" />
         <activity
@@ -89,6 +76,15 @@
         <activity
             android:name=".List_Activity.Main_Activity.MainActivity_User"
             android:exported="true" />
+        <activity
+            android:name=".List_Activity.Onboarding_Screen.Main_Onboarding"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <meta-data
             android:name="preloaded_fonts"
