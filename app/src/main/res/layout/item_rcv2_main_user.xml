@@ -45,7 +45,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/item_fab_rcv2"
                 android:layout_gravity="end|bottom"
-                android:backgroundTint="#EC2578"/>
+
+                app:backgroundTint="#EC2578"/>
 
         </FrameLayout>
     </RelativeLayout>

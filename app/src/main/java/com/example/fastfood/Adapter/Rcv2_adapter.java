@@ -18,25 +18,30 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Rcv2_adapter extends FirebaseRecyclerAdapter<Product,Rcv2_adapter.ViewHolder> {
-
-
 
     public Rcv2_adapter(@NonNull FirebaseRecyclerOptions<Product> options) {
         super(options);
     }
-
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Product model) {
         Log.d("rcv2", "Binding data for position: " + position + ", Product: " + model.toString());
         holder.tv_rcv2_id.setText(model.getId());
         holder.tv_rcv2_describe.setText(model.getDescribe());
-        holder.tv_rcv2_price.setText(model.getPrice()+"k");
+        holder.tv_rcv2_price.setText(model.getPrice()+"K");
         holder.tv_rcv2_typeId.setText(model.getProduct_Type_Id());
         holder.tv_rcv2_name.setText(model.getName());
         Glide.with(holder.img_rcv2.getContext())
                 .load(model.getImg_Product())
                 .into(holder.img_rcv2);
+        holder.btn_add_rcv2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
     }
 
     @NonNull

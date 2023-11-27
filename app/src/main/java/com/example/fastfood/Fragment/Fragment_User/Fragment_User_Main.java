@@ -21,18 +21,20 @@ import com.example.fastfood.Adapter.Product_Adapter;
 import com.example.fastfood.Adapter.Rcv1_adapter;
 import com.example.fastfood.Adapter.Rcv2_adapter;
 import com.example.fastfood.Adapter.Rcv3_adapter;
+import com.example.fastfood.Adapter.Rcv_cart_adapter;
 import com.example.fastfood.Model.Product;
 import com.example.fastfood.Model.ProductType;
 import com.example.fastfood.R;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class Fragment_User_Main extends Fragment {
+public class Fragment_User_Main extends Fragment{
     private ViewFlipper viewFlipper;
     RecyclerView rcv1, rcv2, rcv3;
     Rcv1_adapter adapter;
     Rcv2_adapter adapter2;
     Rcv3_adapter adapter3;
+    Rcv_cart_adapter adapter4;
     public Fragment_User_Main() {}
     @SuppressLint("MissingInflatedId")
     @Override
@@ -108,4 +110,5 @@ public class Fragment_User_Main extends Fragment {
         adapter2.stopListening();
         adapter3.stopListening();
     }
+
 }
