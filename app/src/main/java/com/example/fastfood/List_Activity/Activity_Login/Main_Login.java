@@ -31,8 +31,8 @@ public class Main_Login extends AppCompatActivity {
     private void configTabLayout(){
         Login_Adapter adapter = new Login_Adapter(this);
         binding.viewPagerLogin.setAdapter(adapter);
-        adapter.addFragment(new Fragment_Create_Account(), "Create Account");
         adapter.addFragment(new Fragment_Login(), "Login");
+        adapter.addFragment(new Fragment_Create_Account(), "Create Account");
 
         TabLayoutMediator mediator = new TabLayoutMediator(binding.tabLayoutLogin, binding.viewPagerLogin, (tab, position) -> {
             tab.setText(adapter.getTitle(position));

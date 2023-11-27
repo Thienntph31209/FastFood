@@ -136,6 +136,7 @@
         android:layout_marginTop="10dp"
         android:text="Sign In"
         android:textColor="#EC2578"
+        android:id="@+id/Login_SignIn"
         android:textSize="15dp"
         android:textStyle="bold"
         tools:ignore="TextSizeCheck" />

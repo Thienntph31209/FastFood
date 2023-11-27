@@ -2,6 +2,7 @@ package com.example.fastfood.Fragment.Fragment_Login_Account;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResult;
@@ -11,13 +12,17 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.fastfood.List_Activity.Activity_Login.Forget_Password;
+import com.example.fastfood.List_Activity.Main_Activity.MainActivity_Admin;
 import com.example.fastfood.List_Activity.Main_Activity.MainActivity_User;
+import com.example.fastfood.Model.User;
 import com.example.fastfood.R;
 import com.example.fastfood.databinding.FragmentLoginBinding;
 import com.facebook.AccessToken;
@@ -35,6 +40,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -92,7 +102,108 @@ public class Fragment_Login extends Fragment {
             }
         });
 
+        // đăng nhập ở màn chính
+        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference().child("User");
+        binding.btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String userName = binding.edLoginUserName.getText().toString().trim();
+                String password = binding.edLoginPassWord.getText().toString().trim();
+
+                if (userName.isEmpty() || password.isEmpty()) {
+                    if (userName.isEmpty()) {
+                        binding.inLoginUserName.setError("Vui lòng nhập tên đăng nhập");
+                    }
+                    if (password.isEmpty()) {
+                        binding.inLoginPassWord.setError("Vui lòng nhập mật khẩu");
+                    }
+                }else{
+                    databaseRef.orderByChild("user_Name").equalTo(userName).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if(snapshot.exists()){
+                                for(DataSnapshot snapshot1 : snapshot.getChildren()){
+                                    User user = snapshot1.getValue(User.class);
+                                    if(user != null && user.getPass_Word().equals(password)){
+                                        saveLoginStatus(true, userName, password, user.getRole());
+                                        if(user.getRole() == 0){
+                                            startActivity(new Intent(getActivity(), MainActivity_Admin.class));
+                                        }else if(user.getRole() == 1){
+                                            startActivity(new Intent(getActivity(), MainActivity_User.class));
+                                        }
+                                    }else{
+                                        binding.inLoginPassWord.setError("Mật khẩu sai vui lòng nhập lại mật khẩu!");
+                                    }
+                                }
+                            }else{
+                                binding.inLoginUserName.setError("Tài khoản không tồn tại!");
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }
+            }
+        });
+        // Quên mật khẩu
+        binding.ForgetPassWord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Forget_Password.class));
+            }
+        });
         return view;
+    }
+
+    // thực hiện chức năng đăng nhập một lần
+    private void saveLoginStatus(boolean isLoggedIN, String username, String password, int role){
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("loginStatus", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isLoggedIn", isLoggedIN);
+        editor.putString("username", username);
+        editor.putString("password", password);
+        editor.putString("role", String.valueOf(role));
+        editor.apply();
+    }
+
+    private void checkLoginStatus() {
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("loginStatus", Activity.MODE_PRIVATE);
+        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+        String roleString = sharedPreferences.getString("role", "");
+
+        int userRole = -1; // Đặt giá trị mặc định là -1
+
+        if (!roleString.isEmpty()) {
+            try {
+                userRole = Integer.parseInt(roleString);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                // Xử lý khi chuỗi không thể chuyển đổi thành số nguyên
+            }
+        }
+
+        if (isLoggedIn) {
+            switch (userRole) {
+                case 0: // Người dùng thông thường
+                    startActivity(new Intent(getActivity(), MainActivity_Admin.class));
+                    break;
+                case 1: // Quản trị viên
+                    startActivity(new Intent(getActivity(), MainActivity_User.class));
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        checkLoginStatus();
     }
 
     @Override

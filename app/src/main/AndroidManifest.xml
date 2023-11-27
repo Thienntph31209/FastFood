@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -15,10 +14,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FastFood"
         tools:targetApi="31">
+        <activity
+            android:name=".List_Activity.Main_Activity.Changepassword_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".List_Activity.Activity_Login.Forget_Password"
+            android:exported="false" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -28,20 +33,19 @@
 
         <activity
             android:name="com.facebook.FacebookActivity"
-
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" />
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".List_Activity.Activity_Login.Confirm"
             android:exported="false" />
@@ -57,34 +61,27 @@
         <activity
             android:name=".List_Activity.Onboarding_Screen.Main_Onboarding"
             android:exported="true">
-
-        </activity>
-        <activity
-            android:name=".List_Activity.Activity_Login.Main_Login"
-            android:exported="true" />
-
-        <activity
-            android:name=".List_Activity.Activity_Management.User_Manager"
-            android:exported="false" />
-
-        <activity
-            android:name=".List_Activity.Activity_Management.Bill_Manager"
-            android:exported="false" />
-
-        <activity
-            android:name=".List_Activity.Activity_Management.Product_Manager"
-            android:exported="false" />
-
-        <activity
-            android:name=".List_Activity.Main_Activity.MainActivity_Admin"
-            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name=".List_Activity.Activity_Login.Main_Login"
+            android:exported="true" />
+        <activity
+            android:name=".List_Activity.Activity_Management.User_Manager"
+            android:exported="false" />
+        <activity
+            android:name=".List_Activity.Activity_Management.Bill_Manager"
+            android:exported="false" />
+        <activity
+            android:name=".List_Activity.Activity_Management.Product_Manager"
+            android:exported="false" />
+        <activity
+            android:name=".List_Activity.Main_Activity.MainActivity_Admin"
+            android:exported="true" />
         <activity
             android:name=".List_Activity.Main_Activity.MainActivity_User"
             android:exported="true" />

@@ -8,18 +8,11 @@
     tools:context=".List_Activity.Activity_Login.Confirm">
 
     <ImageView
-        android:layout_width="20dp"
-        android:layout_height="16dp"
-        android:src="@drawable/arrow_back"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:id="@+id/back_Confirm"/>
-
-    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/confirm"
         android:layout_gravity="center"
+        android:id="@+id/image_confirm"
         android:layout_marginTop="150dp"/>
 
     <TextView
