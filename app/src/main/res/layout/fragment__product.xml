@@ -1,40 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginBottom="73dp"
-    tools:context=".Fragment.Fragment_User.Fragment_User_Product"
-    android:padding="10dp">
-    <RelativeLayout
+    android:orientation="vertical"
+    tools:context=".Fragment.Fragment_User.Fragment_User_Cart">
+
+    <LinearLayout
+        android:id="@+id/item1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="#EC2578">
         <TextView
-            android:id="@+id/yourCart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="YOUR CART"
-            android:textColor="@color/black"
-            android:fontFamily="@font/open_sans"
+            android:text="My Orders"
+            android:textSize="25dp"
             android:textStyle="bold"
-            android:textSize="23sp"/>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcv_cart_user"
-            android:layout_marginTop="10dp"
-            android:layout_below="@id/yourCart"
-            android:layout_width="match_parent"
-            android:layout_height="535dp"/>
-        <Button
-            android:id="@+id/btn_order_user"
-            android:layout_width="match_parent"
+            android:textColor="#fff"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="530dp"
+        android:id="@+id/rcv_cart"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/line6"
+        android:layout_marginTop="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/rcv_cart_user"
-            android:background="@drawable/style_btn"
-            app:backgroundTint="#EC2578"
-            android:text="ORDER"
-            android:fontFamily="@font/open_sans"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"/>
-    </RelativeLayout>
-</FrameLayout>
+            android:text="Total amount: "
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="#000"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="150.000 VNĐ"
+            android:textSize="20dp"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"
+            android:id="@+id/total_Cart"
+            android:textColor="#EC2578"/>
+    </LinearLayout>
+    
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="62dp"
+        android:layout_gravity="center"
+        android:backgroundTint="#EC2578"
+        android:text="Order"
+        android:id="@+id/order_Cart"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"/>
+
+</LinearLayout>
