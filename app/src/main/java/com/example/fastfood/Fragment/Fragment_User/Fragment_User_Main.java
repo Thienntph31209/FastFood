@@ -25,14 +25,15 @@ import com.example.fastfood.R;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class Fragment_User_Main extends Fragment{
+public class Fragment_User_Main extends Fragment implements Rcv1_adapter.OnItemClickListener{
     private ViewFlipper viewFlipper;
     RecyclerView rcv1, rcv2, rcv3;
     Rcv1_adapter adapter;
     Rcv2_adapter adapter2;
     Rcv3_adapter adapter3;
-
+    String username;
     public Fragment_User_Main() {}
+
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,7 +53,9 @@ public class Fragment_User_Main extends Fragment{
         ImageView img3 = new ImageView(getActivity());
         img3.setImageResource(R.drawable.img_slider_3);
         viewFlipper.addView(img3);
+
         //
+
         rcv1 = v.findViewById(R.id.rcv1_frm_main_user);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         rcv1.setLayoutManager(manager);
@@ -61,19 +64,22 @@ public class Fragment_User_Main extends Fragment{
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Product_Type"),ProductType.class)
                         .build();
         adapter = new Rcv1_adapter(options);
+        adapter.setOnItemClickListener(this);
         rcv1.setAdapter(adapter);
+
         //
+
         rcv2 = v.findViewById(R.id.rcv2_frm_main_user);
-        Log.d("rcv2", "RecyclerView found.");
         LinearLayoutManager manager2 = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         rcv2.setLayoutManager(manager2);
         FirebaseRecyclerOptions<Product> options2 =
                 new FirebaseRecyclerOptions.Builder<Product>()
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Product"),Product.class)
                         .build();
-        adapter2 = new Rcv2_adapter(options2);
+        adapter2 = new Rcv2_adapter(options2, getActivity());
         rcv2.setAdapter(adapter2);
-        Log.d("rcv2", "Adapter set.");
+
+
         //
         rcv3 = v.findViewById(R.id.rcv3_frm_main_user);
         rcv3.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -83,9 +89,25 @@ public class Fragment_User_Main extends Fragment{
                         .build();
         adapter3 = new Rcv3_adapter(options3);
         rcv3.setAdapter(adapter3);
+
+
         return v;
         //
     }
+
+    @Override
+    public void onItemClick(String productTypeId) {
+        FirebaseRecyclerOptions<Product> optionsForRcv2 =
+                new FirebaseRecyclerOptions.Builder<Product>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference()
+                                .child("Product")
+                                .orderByChild("Product_Type_Id")
+                                .equalTo(productTypeId), Product.class) // Thêm phương thức equalTo() để so sánh với productTypeId
+                        .build();
+        adapter2.updateOptions(optionsForRcv2);
+        adapter2.notifyDataSetChanged();
+    }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -96,8 +118,8 @@ public class Fragment_User_Main extends Fragment{
     public void onStart() {
         super.onStart();
         adapter.startListening();
-        adapter2.startListening();
         adapter3.startListening();
+        adapter2.startListening();
     }
 
     @Override

@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.fastfood.Adapter.Product_Type_Adapter;
+import com.example.fastfood.List_Activity.Main_Activity.MainActivity_Admin;
 import com.example.fastfood.Model.ProductType;
 import com.example.fastfood.R;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -34,7 +35,7 @@ public class Product_Type_Manager extends AppCompatActivity {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Product_Type_Manager.this, Product_Manager.class);
+                Intent intent = new Intent(Product_Type_Manager.this, MainActivity_Admin.class);
                 startActivity(intent);
                 finish();
             }

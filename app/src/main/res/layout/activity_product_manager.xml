@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragment.Fragment_User.Fragment_User_Product">
+    tools:context=".Fragment.Fragment_User.Fragment_User_Cart">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -37,33 +37,13 @@
                 android:textColor="@color/white"
                 android:textSize="25sp"
                 android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/btn_next_product"
-                android:layout_width="20dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="50dp"
-                android:src="@drawable/ic_next"
-                app:backgroundTint="@color/white"/>
         </LinearLayout>
-
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/sv_product"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/Ll_top"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/search_style"
-            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv_product"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/sv_product"
+            android:layout_below="@id/Ll_top"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp" />
@@ -78,6 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
             android:id="@+id/fab_add_product"
+            app:tint="#fff"
             android:backgroundTint="#EC2578"
             app:srcCompat="@drawable/add_white"/>
     </FrameLayout>

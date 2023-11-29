@@ -37,23 +37,11 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <SearchView
-            android:id="@+id/sv_product_type"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/Ll_top"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/search_style"
-
-            />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv_product_type"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/sv_product_type"
+            android:layout_below="@id/Ll_top"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"/>
@@ -63,13 +51,16 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:padding="10dp">
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add_product_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
-            android:id="@+id/fab_add_product_type"
             android:backgroundTint="#EC2578"
-            android:src="@drawable/add_white"/>
+            android:src="@drawable/add_white"
+            app:tint="#fff"
+            tools:ignore="SpeakableTextPresentCheck" />
     </FrameLayout>
 
 </FrameLayout>

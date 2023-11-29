@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.fastfood.Fragment.Fragment_User.Fragment_User_Main;
 import com.example.fastfood.List_Activity.Activity_Login.Forget_Password;
 import com.example.fastfood.List_Activity.Main_Activity.MainActivity_Admin;
 import com.example.fastfood.List_Activity.Main_Activity.MainActivity_User;
@@ -167,6 +168,7 @@ public class Fragment_Login extends Fragment {
         editor.putString("password", password);
         editor.putString("role", String.valueOf(role));
         editor.apply();
+
     }
 
     private void checkLoginStatus() {

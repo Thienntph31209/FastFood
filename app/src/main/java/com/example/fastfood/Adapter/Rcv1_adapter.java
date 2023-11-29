@@ -17,8 +17,18 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 public class Rcv1_adapter extends FirebaseRecyclerAdapter<ProductType, Rcv1_adapter.ViewHolder> {
+
+    private OnItemClickListener listener;
     public Rcv1_adapter(@NonNull FirebaseRecyclerOptions<ProductType> options) {
         super(options);
+    }
+
+    public interface OnItemClickListener{
+        void onItemClick(String productTypeId);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.listener = listener;
     }
 
     @Override
@@ -31,6 +41,16 @@ public class Rcv1_adapter extends FirebaseRecyclerAdapter<ProductType, Rcv1_adap
                 .circleCrop()
                 .error(com.firebase.ui.database.R.drawable.common_google_signin_btn_icon_dark_normal)
                 .into(holder.img_rcv1);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(listener != null){
+                    listener.onItemClick(model.getProduct_Type_Id());
+                }
+            }
+        });
+
     }
 
     @NonNull

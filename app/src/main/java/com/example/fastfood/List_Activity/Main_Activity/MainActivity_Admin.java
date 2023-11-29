@@ -19,6 +19,7 @@ import com.example.fastfood.Fragment.Fragment_Admin.Fragment_Admin_Chart;
 import com.example.fastfood.Fragment.Fragment_Admin.Fragment_Admin_Notification;
 import com.example.fastfood.Fragment.Fragment_Admin.Fragment_Admin_Personal_Information;
 import com.example.fastfood.List_Activity.Activity_Management.Bill_Manager;
+import com.example.fastfood.List_Activity.Activity_Management.Product_Type_Manager;
 import com.example.fastfood.List_Activity.Activity_Management.User_Manager;
 import com.example.fastfood.List_Activity.Activity_Management.Product_Manager;
 import com.example.fastfood.R;
@@ -65,7 +66,7 @@ public class MainActivity_Admin extends AppCompatActivity {
         product.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity_Admin.this, Product_Manager.class));
+                startActivity(new Intent(MainActivity_Admin.this, Product_Type_Manager.class));
             }
         });
 
