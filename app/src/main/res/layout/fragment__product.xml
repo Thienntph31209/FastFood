@@ -7,34 +7,5 @@
     android:layout_marginBottom="73dp"
     tools:context=".Fragment.Fragment_User.Fragment_User_Product"
     android:padding="10dp">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/yourCart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="YOUR CART"
-            android:textColor="@color/black"
-            android:fontFamily="@font/open_sans"
-            android:textStyle="bold"
-            android:textSize="23sp"/>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcv_cart_user"
-            android:layout_marginTop="10dp"
-            android:layout_below="@id/yourCart"
-            android:layout_width="match_parent"
-            android:layout_height="535dp"/>
-        <Button
-            android:id="@+id/btn_order_user"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/rcv_cart_user"
-            android:background="@drawable/style_btn"
-            app:backgroundTint="#EC2578"
-            android:text="ORDER"
-            android:fontFamily="@font/open_sans"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"/>
-    </RelativeLayout>
+
 </FrameLayout>

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,11 +16,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ViewFlipper;
 
-import com.example.fastfood.Adapter.Product_Adapter;
 import com.example.fastfood.Adapter.Rcv1_adapter;
 import com.example.fastfood.Adapter.Rcv2_adapter;
 import com.example.fastfood.Adapter.Rcv3_adapter;
-import com.example.fastfood.Adapter.Rcv_cart_adapter;
 import com.example.fastfood.Model.Product;
 import com.example.fastfood.Model.ProductType;
 import com.example.fastfood.R;
@@ -34,7 +31,7 @@ public class Fragment_User_Main extends Fragment{
     Rcv1_adapter adapter;
     Rcv2_adapter adapter2;
     Rcv3_adapter adapter3;
-    Rcv_cart_adapter adapter4;
+
     public Fragment_User_Main() {}
     @SuppressLint("MissingInflatedId")
     @Override

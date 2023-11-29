@@ -36,7 +36,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:orientation="horizontal"
-                    android:flipInterval="2000">
+                    android:flipInterval="2000"
+                    android:inAnimation="@anim/slide_in_left"
+                    android:outAnimation="@anim/silde_out_right">
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
