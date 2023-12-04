@@ -25,7 +25,7 @@
             android:text="Chese burger"
             android:textColor="@color/black"
             android:fontFamily="@font/open_sans"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:layout_below="@id/item_img_rcv2"/>
         <FrameLayout
             android:layout_width="match_parent"

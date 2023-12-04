@@ -22,6 +22,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class oderDeltai_Adapter extends FirebaseRecyclerAdapter<Cart, oderDeltai_Adapter.myViewHolder> {
     private int totalCost = 0;
     private OnDataClickListener dataClickListener;

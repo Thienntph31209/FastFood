@@ -46,7 +46,7 @@ public class Cart_Adapter extends FirebaseRecyclerAdapter<Cart, Cart_Adapter.myV
                         Product product = dataSnapshot.getValue(Product.class);
                         // Xử lý dữ liệu sản phẩm ở đây
                         holder.name_cart.setText(product.getName());
-                        holder.price_cart.setText(String.valueOf(product.getPrice() + " K"));
+                        holder.price_cart.setText(String.valueOf(product.getPrice() + " đ"));
                         Glide.with(holder.Img_Cart.getContext())
                                 .load(product.getImg_Product())
                                 .into(holder.Img_Cart);

@@ -29,6 +29,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.UUID;
 
 public class Rcv2_adapter extends FirebaseRecyclerAdapter<Product,Rcv2_adapter.ViewHolder> {
@@ -47,7 +49,7 @@ public class Rcv2_adapter extends FirebaseRecyclerAdapter<Product,Rcv2_adapter.V
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Product model) {
         holder.tv_rcv2_id.setText(model.getId());
         holder.tv_rcv2_describe.setText(model.getDescribe());
-        holder.tv_rcv2_price.setText(String.valueOf(model.getPrice()+"K"));
+        holder.tv_rcv2_price.setText(String.valueOf(model.getPrice()) + " đ");
         holder.tv_rcv2_typeId.setText(model.getProduct_Type_Id());
         holder.tv_rcv2_name.setText(model.getName());
 

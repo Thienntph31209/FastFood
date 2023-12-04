@@ -104,31 +104,6 @@
                 </FrameLayout>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
-                android:id="@+id/btn_notification_user"
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                app:cardUseCompatPadding="true"
-                app:cardCornerRadius="10dp">
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_notification_black"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="10dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Notification - promotion "
-                        android:fontFamily="@font/open_sans"
-                        android:textSize="20sp"
-                        android:layout_gravity="center_vertical|center_horizontal"
-                        android:textColor="@color/black"/>
-                </FrameLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
                 android:id="@+id/btn_change_info_user"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
@@ -146,7 +121,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Change infomation"
+                        android:text="Infomation"
                         android:fontFamily="@font/open_sans"
                         android:textSize="20sp"
                         android:layout_gravity="center_vertical|center_horizontal"
@@ -172,31 +147,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Change password"
-                        android:fontFamily="@font/open_sans"
-                        android:textSize="20sp"
-                        android:layout_gravity="center_vertical|center_horizontal"
-                        android:textColor="@color/black"/>
-                </FrameLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:id="@+id/btn_setting_user"
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                app:cardUseCompatPadding="true"
-                app:cardCornerRadius="10dp">
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_setting"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="10dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Setting"
                         android:fontFamily="@font/open_sans"
                         android:textSize="20sp"
                         android:layout_gravity="center_vertical|center_horizontal"
