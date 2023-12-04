@@ -139,7 +139,7 @@ public class Product_Manager extends AppCompatActivity {
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Product");
                 String key = databaseReference.push().getKey();
                 //
-                databaseReference.child(key).child("Id").setValue(data_id);
+                databaseReference.child(key).child("id").setValue(data_id);
                 databaseReference.child(key).child("Describe").setValue(data_describe);
                 databaseReference.child(key).child("Img_Product").setValue(data_img);
                 databaseReference.child(key).child("Name").setValue(data_name);

@@ -1,7 +1,9 @@
 package com.example.fastfood.Adapter;
 
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,10 +33,10 @@ import java.util.UUID;
 
 public class Rcv2_adapter extends FirebaseRecyclerAdapter<Product,Rcv2_adapter.ViewHolder> {
     private Context context;
-    private String username;
+    private String userId;
 
-    public void setUsername(String username){
-        this.username = username;
+    public void setUserId(String userId){
+        this.userId = userId;
     }
 
     public Rcv2_adapter(@NonNull FirebaseRecyclerOptions<Product> options, Context context) {
@@ -43,7 +45,6 @@ public class Rcv2_adapter extends FirebaseRecyclerAdapter<Product,Rcv2_adapter.V
     }
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Product model) {
-        Log.d("rcv2", "Binding data for position: " + position + ", Product: " + model.toString());
         holder.tv_rcv2_id.setText(model.getId());
         holder.tv_rcv2_describe.setText(model.getDescribe());
         holder.tv_rcv2_price.setText(String.valueOf(model.getPrice()+"K"));
@@ -96,6 +97,7 @@ public class Rcv2_adapter extends FirebaseRecyclerAdapter<Product,Rcv2_adapter.V
         Cart cartItem = new Cart();
 
         cartItem.setCart_Id(cartId);
+        cartItem.setUser_Id(userId);
         cartItem.setId(product.getId());
         cartItem.setCart_quantity(1);
         cartRef.setValue(cartItem)

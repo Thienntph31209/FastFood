@@ -1,5 +1,7 @@
 package com.example.fastfood.Adapter;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class Cart_Adapter extends FirebaseRecyclerAdapter<Cart, Cart_Adapter.myViewHolder> {
@@ -28,46 +31,83 @@ public class Cart_Adapter extends FirebaseRecyclerAdapter<Cart, Cart_Adapter.myV
 
     @Override
     protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull Cart model) {
-        // lấy thông tin sản phẩm từ Product_Id
-        DatabaseReference productRef = FirebaseDatabase.getInstance().getReference().child("Product").child(model.getId());
-        productRef.addListenerForSingleValueEvent(new ValueEventListener() {
+
+        final int itemPosition = position;
+
+        String productId = model.getId();
+        DatabaseReference productRef = FirebaseDatabase.getInstance().getReference().child("Product");
+        Query query = productRef.orderByChild("id").equalTo(productId);
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    Product product = snapshot.getValue(Product.class);
-                    holder.name_cart.setText(product.getName());
-                    holder.price_cart.setText(product.getPrice());
-                    Glide.with(holder.Img_Cart.getContext())
-                            .load(product.getImg_Product())
-                            .into(holder.Img_Cart);
+                if (snapshot.exists()) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        Product product = dataSnapshot.getValue(Product.class);
+                        // Xử lý dữ liệu sản phẩm ở đây
+                        holder.name_cart.setText(product.getName());
+                        holder.price_cart.setText(String.valueOf(product.getPrice() + " K"));
+                        Glide.with(holder.Img_Cart.getContext())
+                                .load(product.getImg_Product())
+                                .into(holder.Img_Cart);
+                        holder.quantity_cart.setText(String.valueOf(model.getCart_quantity()));
+                    }
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                // Xử lý khi truy vấn bị hủy
             }
         });
-
-        holder.quantity_cart.setText(String.valueOf(model.getCart_quantity()));
+        // Trong onBindViewHolder của Adapter
+        // tăng số lượng hàng
         holder.add_cart_quantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int updatedQuantity = model.getCart_quantity() + 1;
-                DatabaseReference cartRef = FirebaseDatabase.getInstance().getReference().child("Cart").child(model.getCart_Id());
-                cartRef.child("cart_quantity").setValue(updatedQuantity);
+                int quantity = model.getCart_quantity();
+                quantity++;
+                DatabaseReference cartRef = getRef(itemPosition);
+                cartRef.child("cart_quantity").setValue(quantity);
             }
         });
+        //giảm số lượng
         holder.minus_cart_quantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int updatedQuantity = model.getCart_quantity() - 1;
-                if(updatedQuantity >= 0){
-                    DatabaseReference cartRef = FirebaseDatabase.getInstance().getReference().child(model.getCart_Id());
-                    cartRef.child("cart_quantity").setValue(updatedQuantity);
+                int quantity = model.getCart_quantity();
+                if(quantity > 1){
+                    quantity--;
+                    DatabaseReference cartRef = getRef(itemPosition);
+                    cartRef.child("cart_quantity").setValue(quantity);
                 }
             }
         });
+        // xóa cart
+        // Trong phương thức onBindViewHolder của Adapter
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(holder.itemView.getContext());
+                builder.setTitle("Xóa sản phẩm");
+                builder.setMessage("Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng?");
+                builder.setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        DatabaseReference cartItemRef = getRef(itemPosition);
+                        cartItemRef.removeValue(); // Xóa sản phẩm khỏi giỏ hàng của người dùng
+                    }
+                });
+                builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // Không làm gì khi người dùng hủy xóa sản phẩm
+                    }
+                });
+                builder.create().show();
+            }
+        });
+
     }
 
     @NonNull
@@ -90,5 +130,7 @@ public class Cart_Adapter extends FirebaseRecyclerAdapter<Cart, Cart_Adapter.myV
             quantity_cart = itemView.findViewById(R.id.quantity_cart);
         }
     }
+
+
 
 }

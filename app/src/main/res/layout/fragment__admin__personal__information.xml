@@ -81,60 +81,6 @@
                     android:layout_width="390dp"
                     android:layout_height="60dp"
                     android:background="@android:color/transparent"
-                    android:text="User Manager"
-                    android:textColor="#000"
-                    android:textSize="19dp"
-                    android:id="@+id/UserManager_admin_information"
-                    android:drawableLeft="@drawable/person_admin"/>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="16dp">
-                <Button
-                    android:layout_width="390dp"
-                    android:layout_height="60dp"
-                    android:background="@android:color/transparent"
-                    android:text="Product Manager"
-                    android:textColor="#000"
-                    android:textSize="19dp"
-                    android:id="@+id/ProductManager_admin_information"
-                    android:drawableLeft="@drawable/vector"/>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="16dp">
-                <Button
-                    android:layout_width="390dp"
-                    android:layout_height="60dp"
-                    android:background="@android:color/transparent"
-                    android:text="Bill Manager"
-                    android:textColor="#000"
-                    android:textSize="19dp"
-                    android:id="@+id/BillManager_admin_information"
-                    android:drawableLeft="@drawable/bill_admin"/>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="16dp">
-                <Button
-                    android:layout_width="390dp"
-                    android:layout_height="60dp"
-                    android:background="@android:color/transparent"
                     android:text="Total revenue"
                     android:textColor="#000"
                     android:textSize="19dp"
@@ -201,6 +147,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="16dp">
                 <Button

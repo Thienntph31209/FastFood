@@ -79,6 +79,10 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
     //dialogplus
     implementation 'com.orhanobut:dialogplus:1.11@aar'
+    //chart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+
 
 
 }

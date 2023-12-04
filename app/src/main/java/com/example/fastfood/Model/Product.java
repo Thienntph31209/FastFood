@@ -1,25 +1,26 @@
 package com.example.fastfood.Model;
 
 public class Product {
-    private String Id, Describe, Img_Product, Name, Product_Type_Id;
+    private String id, Describe, Img_Product, Name, Product_Type_Id;
     private int Price;
 
     public  Product(){}
+
     public Product(String id, String describe, String img_Product, String name, String product_Type_Id, int price) {
-        Id = id;
+        this.id = id;
         Describe = describe;
         Img_Product = img_Product;
         Name = name;
         Product_Type_Id = product_Type_Id;
         Price = price;
-
     }
+
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getDescribe() {

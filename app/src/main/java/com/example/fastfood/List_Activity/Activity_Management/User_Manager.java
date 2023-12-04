@@ -36,7 +36,6 @@ import java.util.UUID;
 public class User_Manager extends AppCompatActivity {
     private ActivityEmployeeManagerBinding binding;
     User_Adapter adapter;
-    private Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

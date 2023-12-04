@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -110,7 +111,7 @@ public class Fragment_Login extends Fragment {
             public void onClick(View view) {
                 String userName = binding.edLoginUserName.getText().toString().trim();
                 String password = binding.edLoginPassWord.getText().toString().trim();
-
+                Log.d("Loginapp", "Username: " + userName + " Password: " + password);
                 if (userName.isEmpty() || password.isEmpty()) {
                     if (userName.isEmpty()) {
                         binding.inLoginUserName.setError("Vui lòng nhập tên đăng nhập");
@@ -126,11 +127,17 @@ public class Fragment_Login extends Fragment {
                                 for(DataSnapshot snapshot1 : snapshot.getChildren()){
                                     User user = snapshot1.getValue(User.class);
                                     if(user != null && user.getPass_Word().equals(password)){
+
                                         saveLoginStatus(true, userName, password, user.getRole());
                                         if(user.getRole() == 0){
-                                            startActivity(new Intent(getActivity(), MainActivity_Admin.class));
+
+                                            Intent intent = new Intent(getActivity(), MainActivity_Admin.class);
+                                            intent.putExtra("Username", user.getUser_Id());
+                                            startActivity(intent);
                                         }else if(user.getRole() == 1){
-                                            startActivity(new Intent(getActivity(), MainActivity_User.class));
+                                            Intent intent = new Intent(getActivity(), MainActivity_User.class);
+                                            intent.putExtra("Username", user.getUser_Id());
+                                            startActivity(intent);
                                         }
                                     }else{
                                         binding.inLoginPassWord.setError("Mật khẩu sai vui lòng nhập lại mật khẩu!");
@@ -168,7 +175,7 @@ public class Fragment_Login extends Fragment {
         editor.putString("password", password);
         editor.putString("role", String.valueOf(role));
         editor.apply();
-
+        Log.d("LoginRef", "Đã lưu vào SharedPreferences - Username: " + username + " Password: " + password);
     }
 
     private void checkLoginStatus() {
