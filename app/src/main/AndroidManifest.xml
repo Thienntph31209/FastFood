@@ -50,6 +50,12 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".List_Activity.Main_Activity.Confirmed_order"
+            android:exported="false"/>
+        <activity
+            android:name=".List_Activity.Main_Activity.oderDeatil"
+            android:exported="false"/>
+        <activity
             android:name=".List_Activity.Activity_Login.Confirm"
             android:exported="false" />
         <activity
@@ -67,6 +73,9 @@
         <activity
             android:name=".List_Activity.Activity_Management.Bill_Manager"
             android:exported="false" />
+        <activity
+            android:name=".List_Activity.Main_Activity.Activity_changeInfo"
+            android:exported="false"/>
         <activity
             android:name=".List_Activity.Activity_Management.Product_Manager"
             android:exported="false" />

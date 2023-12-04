@@ -22,6 +22,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class oderDeltai_Adapter extends FirebaseRecyclerAdapter<Cart, oderDeltai_Adapter.myViewHolder> {
     private int totalCost = 0;
     private OnDataClickListener dataClickListener;
@@ -46,7 +49,11 @@ public class oderDeltai_Adapter extends FirebaseRecyclerAdapter<Cart, oderDeltai
                     for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                         Product product = dataSnapshot.getValue(Product.class);
                         holder.name_oderDealtai.setText(product.getName());
-                        holder.price_oderDealtai.setText(String.valueOf(product.getPrice()));
+
+                        NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+                        int formattedTotalRevenue = Integer.parseInt(formatter.format(product.getPrice()));
+
+                        holder.price_oderDealtai.setText(formattedTotalRevenue);
                         Glide.with(holder.Img_oderDealtai.getContext())
                                 .load(product.getImg_Product())
                                 .into(holder.Img_oderDealtai);

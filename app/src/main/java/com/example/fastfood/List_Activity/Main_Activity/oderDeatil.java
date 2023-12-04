@@ -29,12 +29,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 public class oderDeatil extends AppCompatActivity implements oderDeltai_Adapter.OnDataClickListener {
@@ -50,7 +52,12 @@ public class oderDeatil extends AppCompatActivity implements oderDeltai_Adapter.
         setContentView(R.layout.activity_oder_deatil);
         binding = ActivityOderDeatilBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        binding.backOrderDeltail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(oderDeatil.this, MainActivity_User.class));
+            }
+        });
         shareRef = getSharedPreferences("UserData", Context.MODE_PRIVATE);
         userId = shareRef.getString("userId","");
         phoneNumber = shareRef.getInt("phoneNumber",0);
@@ -87,7 +94,11 @@ public class oderDeatil extends AppCompatActivity implements oderDeltai_Adapter.
 
     @Override
     public void onDataClicked(String productId, int total, int price, int quantity, int totalCost) {
-        binding.TotailOderDeatail.setText(String.valueOf(totalCost));
+        //
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+        String formattedTotalRevenue = formatter.format(totalCost);
+        //
+        binding.TotailOderDeatail.setText(formattedTotalRevenue);
 
         Bill_Detail billDetail = new Bill_Detail();
         billDetail.setInvoice_detail_id(UUID.randomUUID().toString());
