@@ -49,11 +49,7 @@ public class oderDeltai_Adapter extends FirebaseRecyclerAdapter<Cart, oderDeltai
                     for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                         Product product = dataSnapshot.getValue(Product.class);
                         holder.name_oderDealtai.setText(product.getName());
-
-                        NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
-                        int formattedTotalRevenue = Integer.parseInt(formatter.format(product.getPrice()));
-
-                        holder.price_oderDealtai.setText(formattedTotalRevenue);
+                        holder.price_oderDealtai.setText(String.valueOf(product.getPrice()));
                         Glide.with(holder.Img_oderDealtai.getContext())
                                 .load(product.getImg_Product())
                                 .into(holder.Img_oderDealtai);

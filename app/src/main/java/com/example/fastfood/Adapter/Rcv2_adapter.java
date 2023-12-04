@@ -49,11 +49,7 @@ public class Rcv2_adapter extends FirebaseRecyclerAdapter<Product,Rcv2_adapter.V
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Product model) {
         holder.tv_rcv2_id.setText(model.getId());
         holder.tv_rcv2_describe.setText(model.getDescribe());
-
-        NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
-        String formattedTotalRevenue = formatter.format(model.getPrice());
-
-        holder.tv_rcv2_price.setText(formattedTotalRevenue);
+        holder.tv_rcv2_price.setText(String.valueOf(model.getPrice()) + " đ");
         holder.tv_rcv2_typeId.setText(model.getProduct_Type_Id());
         holder.tv_rcv2_name.setText(model.getName());
 

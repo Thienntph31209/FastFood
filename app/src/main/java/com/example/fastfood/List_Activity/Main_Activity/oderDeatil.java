@@ -94,11 +94,7 @@ public class oderDeatil extends AppCompatActivity implements oderDeltai_Adapter.
 
     @Override
     public void onDataClicked(String productId, int total, int price, int quantity, int totalCost) {
-        //
-        NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
-        String formattedTotalRevenue = formatter.format(totalCost);
-        //
-        binding.TotailOderDeatail.setText(formattedTotalRevenue);
+        binding.TotailOderDeatail.setText(String.valueOf(totalCost));
 
         Bill_Detail billDetail = new Bill_Detail();
         billDetail.setInvoice_detail_id(UUID.randomUUID().toString());

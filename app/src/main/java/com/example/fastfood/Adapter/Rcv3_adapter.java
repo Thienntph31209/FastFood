@@ -47,11 +47,7 @@ public class Rcv3_adapter extends FirebaseRecyclerAdapter<Product,Rcv3_adapter.V
         Log.d("rcv3", "Binding data for position: " +  model.getId());
         holder.tv_rcv3_id.setText(model.getId());
         holder.tv_rcv3_describe.setText(model.getDescribe());
-
-        NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
-        String formattedTotalRevenue = formatter.format(model.getPrice());
-
-        holder.tv_rcv3_price.setText(formattedTotalRevenue);
+        holder.tv_rcv3_price.setText(String.valueOf(model.getPrice()) + " đ");
         holder.tv_rcv3_typeId.setText(model.getProduct_Type_Id());
         holder.tv_rcv3_name.setText(model.getName());
         Glide.with(holder.img_rcv3.getContext())

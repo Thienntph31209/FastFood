@@ -35,7 +35,7 @@ public class OrderConfirmation_Adapter extends FirebaseRecyclerAdapter<Bill, Ord
     @Override
     protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull Bill model) {
         holder.billId_Manager.setText(model.getBill_Id());
-        holder.Total_Manager.setText(String.valueOf(model.getTotal_Amount()) + ".000 VNĐ");
+        holder.Total_Manager.setText(String.valueOf(model.getTotal_Amount()) + " VNĐ");
         holder.DateTime_Manager.setText(model.getPurchase_Date());
         holder.userId_Manager.setText(model.getAddress());
         holder.Note_Manager.setText(model.getNote());

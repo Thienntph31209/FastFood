@@ -30,7 +30,7 @@ public class Confirmed_order extends AppCompatActivity {
         }
 
         binding.confirmOrderId.setText(bill_Id);
-        binding.confirmTotal.setText(String.valueOf(totalCost) + ".000 VNĐ");
+        binding.confirmTotal.setText(String.valueOf(totalCost) + " VNĐ");
         binding.confirmDateTime.setText(purchase_Date);
         binding.confirmName.setText(fullName);
         binding.confirmPhone.setText(String.valueOf("0" + phoneNumber));

@@ -86,6 +86,7 @@ public class ChangePass_Activity_Admin extends AppCompatActivity {
                         if (old_Pass.equals(oldPass_RD)) {
                             userRef.child(userId).child("pass_Word").setValue(new_Pass);
                             Toast.makeText(ChangePass_Activity_Admin.this,"Change pass success", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(ChangePass_Activity_Admin.this, MainActivity_Admin.class));
                         } else {
                             Toast.makeText(ChangePass_Activity_Admin.this,"Old password incorrect", Toast.LENGTH_SHORT).show();
                         }

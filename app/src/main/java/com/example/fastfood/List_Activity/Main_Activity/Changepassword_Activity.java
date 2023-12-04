@@ -71,6 +71,7 @@ public class Changepassword_Activity extends AppCompatActivity {
         if (!oldPass.isEmpty() && !newPass.isEmpty() && !reNewPass.isEmpty()) {
             if (reNewPass.equals(newPass)) {
                 changePass();
+
             } else {
                 binding.inRePassWord.setError("RePass phải trùng với new password");
             }
@@ -96,6 +97,7 @@ public class Changepassword_Activity extends AppCompatActivity {
                         if (old_Pass.equals(oldPass_RD)) {
                             userRef.child(userId).child("pass_Word").setValue(new_Pass);
                             Toast.makeText(Changepassword_Activity.this,"Change pass success", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(Changepassword_Activity.this, MainActivity_User.class));
                         } else {
                             Toast.makeText(Changepassword_Activity.this,"Old password incorrect", Toast.LENGTH_SHORT).show();
                         }
