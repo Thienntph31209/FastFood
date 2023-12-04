@@ -29,7 +29,7 @@ public class Activity_changeInfo extends AppCompatActivity {
         binding.btnBackInfoUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    startActivity(new Intent(getApplicationContext(), Activity_infomation.class));
+                    startActivity(new Intent(getApplicationContext(), MainActivity_User.class));
             }
         });
         String savedUsername = getUsernameFromSharedPreferences();
@@ -48,8 +48,10 @@ public class Activity_changeInfo extends AppCompatActivity {
                         binding.edEmailChange.setText(email);
                         String phoneNumber = String.valueOf(snapshot1.child("phone_Number").getValue(Integer.class));
                         binding.edPhoneNumberChange.setText(phoneNumber);
+
                         String address = snapshot1.child("address").getValue(String.class);
                         binding.edAddRessChange.setText(address);
+
                     }
                 }
             }
@@ -81,7 +83,7 @@ public class Activity_changeInfo extends AppCompatActivity {
                         String fullName = binding.edFullNameChange.getText().toString().trim();
                         String userName = binding.edUserNameChange.getText().toString().trim();
                         String email = binding.edEmailChange.getText().toString().trim();
-                        String phoneNumber = binding.edPhoneNumberChange.getText().toString().trim();
+                        int phoneNumber = Integer.parseInt(binding.edPhoneNumberChange.getText().toString().trim());
                         String address = binding.edAddRessChange.getText().toString().trim();
 
                         //thực hiện đổi thông tin

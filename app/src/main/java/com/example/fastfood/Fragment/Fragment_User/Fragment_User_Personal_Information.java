@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import com.example.fastfood.List_Activity.Activity_Login.Main_Login;
 import com.example.fastfood.List_Activity.Main_Activity.Activity_changeInfo;
-import com.example.fastfood.List_Activity.Main_Activity.Activity_infomation;
 import com.example.fastfood.List_Activity.Main_Activity.Changepassword_Activity;
 import com.example.fastfood.R;
 import com.google.firebase.database.DataSnapshot;
