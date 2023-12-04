@@ -36,12 +36,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:orientation="horizontal"
-                    android:flipInterval="2000">
+                    android:flipInterval="2000"
+                    android:inAnimation="@anim/fade_in_center"
+                    android:outAnimation="@anim/fade_out_center">
+
                     <ImageView
+                        android:id="@+id/img_slide_1"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
-                        android:id="@+id/img_slide_1"
-                        app:srcCompat="@drawable/img_slider_1"/>
+                        app:srcCompat="@drawable/img_slider_1" />
+
                     <ImageView
                         android:layout_width="400dp"
                         android:layout_height="150dp"

@@ -7,10 +7,12 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,9 +39,8 @@ public class Fragment_User_Main extends Fragment implements Rcv1_adapter.OnItemC
     Rcv1_adapter adapter;
     Rcv2_adapter adapter2;
     Rcv3_adapter adapter3;
-    String username;
+    SearchView sv_User;
     public Fragment_User_Main() {}
-
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -113,8 +114,6 @@ public class Fragment_User_Main extends Fragment implements Rcv1_adapter.OnItemC
                         .build();
         adapter2 = new Rcv2_adapter(options2, getActivity());
         rcv2.setAdapter(adapter2);
-
-
         //
         rcv3 = v.findViewById(R.id.rcv3_frm_main_user);
         rcv3.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -124,8 +123,8 @@ public class Fragment_User_Main extends Fragment implements Rcv1_adapter.OnItemC
                         .build();
         adapter3 = new Rcv3_adapter(options3,getActivity());
         rcv3.setAdapter(adapter3);
-
-
+        //search
+        sv_User = v.findViewById(R.id.sv_frm_main_user);
         return v;
         //
     }

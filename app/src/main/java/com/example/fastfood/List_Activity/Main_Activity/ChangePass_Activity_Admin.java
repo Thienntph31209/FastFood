@@ -7,45 +7,35 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.fastfood.Fragment.Fragment_Admin.Fragment_Admin_Personal_Information;
 import com.example.fastfood.R;
-import com.example.fastfood.databinding.ActivityChangepasswordBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.EmailAuthCredential;
-import com.google.firebase.auth.EmailAuthProvider;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.example.fastfood.databinding.ActivityChangePassAdminBinding;
+
+import com.example.fastfood.databinding.ActivityChangePassAdminBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
-public class Changepassword_Activity extends AppCompatActivity {
-    private ActivityChangepasswordBinding binding;
+public class ChangePass_Activity_Admin extends AppCompatActivity {
+    private ActivityChangePassAdminBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_changepassword);
-        binding = ActivityChangepasswordBinding.inflate(getLayoutInflater());
+        setContentView(R.layout.activity_change_pass_admin);
+        binding = ActivityChangePassAdminBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        binding.backChangepassword.setOnClickListener(new View.OnClickListener() {
+        binding.backChangepasswordAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Changepassword_Activity.this, MainActivity_User.class);
+                Intent intent = new Intent(ChangePass_Activity_Admin.this, MainActivity_Admin.class);
                 startActivity(intent);
             }
         });
-        binding.btnChangepassword.setOnClickListener(new View.OnClickListener() {
+        binding.btnChangepasswordAd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 validate();
@@ -53,26 +43,26 @@ public class Changepassword_Activity extends AppCompatActivity {
         });
     }
     public void validate(){
-        String oldPass = binding.edOldPassWord.getText().toString().trim();
-        String newPass = binding.edNewPassWord.getText().toString().trim();
-        String reNewPass = binding.edRePassWord.getText().toString().trim();
+        String oldPass = binding.edOldPassWordAd.getText().toString().trim();
+        String newPass = binding.edNewPassWordAd.getText().toString().trim();
+        String reNewPass = binding.edRePassWordAd.getText().toString().trim();
         if (oldPass.isEmpty()) {
-            binding.inOldPassWord.setError("Không để trống oldPassword");
-        }else  binding.inOldPassWord.setError(null);
+            binding.inOldPassWordAd.setError("Không để trống oldPassword");
+        }else  binding.inOldPassWordAd.setError(null);
 
         if (newPass.isEmpty()) {
-            binding.inNewPassWord.setError("Không để trống newPassword");
-        }else  binding.inNewPassWord.setError(null);
+            binding.inNewPassWordAd.setError("Không để trống newPassword");
+        }else  binding.inNewPassWordAd.setError(null);
 
         if (reNewPass.isEmpty()) {
-            binding.inRePassWord.setError("Không để trống reNewPassword");
-        }else  binding.inRePassWord.setError(null);
+            binding.inRePassWordAd.setError("Không để trống reNewPassword");
+        }else  binding.inRePassWordAd.setError(null);
 
         if (!oldPass.isEmpty() && !newPass.isEmpty() && !reNewPass.isEmpty()) {
             if (reNewPass.equals(newPass)) {
                 changePass();
             } else {
-                binding.inRePassWord.setError("RePass phải trùng với new password");
+                binding.inRePassWordAd.setError("RePass phải trùng với new password");
             }
         }
     }
@@ -89,15 +79,15 @@ public class Changepassword_Activity extends AppCompatActivity {
                         String oldPass_RD = snapshot1.child("pass_Word").getValue(String.class);
 
                         //lấy mk mũ và mới
-                        String old_Pass = binding.edOldPassWord.getText().toString();
-                        String new_Pass = binding.edNewPassWord.getText().toString();
+                        String old_Pass = binding.edOldPassWordAd.getText().toString();
+                        String new_Pass = binding.edNewPassWordAd.getText().toString();
 
                         //Ktra pass
                         if (old_Pass.equals(oldPass_RD)) {
                             userRef.child(userId).child("pass_Word").setValue(new_Pass);
-                            Toast.makeText(Changepassword_Activity.this,"Change pass success", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ChangePass_Activity_Admin.this,"Change pass success", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(Changepassword_Activity.this,"Old password incorrect", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ChangePass_Activity_Admin.this,"Old password incorrect", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
