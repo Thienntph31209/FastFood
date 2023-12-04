@@ -3,14 +3,12 @@ package com.example.fastfood.Fragment.Fragment_User;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,23 +16,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fastfood.List_Activity.Activity_Login.Main_Login;
+import com.example.fastfood.List_Activity.Main_Activity.Activity_changeInfo;
+import com.example.fastfood.List_Activity.Main_Activity.Activity_infomation;
 import com.example.fastfood.List_Activity.Main_Activity.Changepassword_Activity;
 import com.example.fastfood.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
-
-import java.util.Map;
-import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Fragment_User_Personal_Information extends Fragment {
-    CardView btn_logout_user, btn_changePass;
+    CardView btn_logout_user, btn_changePass, btn_changeInfo;
     CircleImageView avt_user;
     TextView name_user;
     public Fragment_User_Personal_Information() {
@@ -47,6 +43,7 @@ public class Fragment_User_Personal_Information extends Fragment {
         View v = inflater.inflate(R.layout.fragment__personal__information, container, false);
         btn_logout_user = v.findViewById(R.id.btn_logOut_user);
         btn_changePass = v.findViewById(R.id.btn_change_pass_user);
+        btn_changeInfo = v.findViewById(R.id.btn_change_info_user);
         avt_user = v.findViewById(R.id.img_user);
         name_user = v.findViewById(R.id.name_user);
         String savedUsername = getUsernameFromSharedPreferences();
@@ -74,6 +71,12 @@ public class Fragment_User_Personal_Information extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), Changepassword_Activity.class);
                 startActivity(intent);
+            }
+        });
+        btn_changeInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Activity_changeInfo.class));
             }
         });
         btn_logout_user.setOnClickListener(new View.OnClickListener() {

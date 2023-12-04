@@ -34,9 +34,7 @@ public class Fragment_User_Main extends Fragment implements Rcv1_adapter.OnItemC
     Rcv2_adapter adapter2;
     Rcv3_adapter adapter3;
     SearchView sv_User;
-    String username;
     public Fragment_User_Main() {}
-
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -92,39 +90,8 @@ public class Fragment_User_Main extends Fragment implements Rcv1_adapter.OnItemC
         rcv3.setAdapter(adapter3);
         //search
         sv_User = v.findViewById(R.id.sv_frm_main_user);
-        sv_User.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                if (TextUtils.isEmpty(newText)) {
-                    // Nếu không có văn bản tìm kiếm, hiển thị toàn bộ danh sách
-                    adapter3.updateOptions(options3); // options3 là FirebaseRecyclerOptions ban đầu
-                } else {
-                    // Nếu có văn bản tìm kiếm, thực hiện truy vấn
-                    performSearch(newText);
-                }
-                return true;
-            }
-        });
-
         return v;
         //
-    }
-
-    private void performSearch(String searchText) {
-        //hàm tìm kiếm
-        FirebaseRecyclerOptions<Product> searchOptions =
-                new FirebaseRecyclerOptions.Builder<Product>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Product")
-                                .orderByChild("Name")
-                                .startAt(searchText)
-                                .endAt(searchText + "\uf8ff"), Product.class)
-                        .build();
-        adapter3.updateOptions(searchOptions);
     }
 
     @Override
