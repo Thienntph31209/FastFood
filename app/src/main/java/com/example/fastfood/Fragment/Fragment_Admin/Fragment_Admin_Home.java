@@ -50,7 +50,7 @@ public class Fragment_Admin_Home extends Fragment {
         updateTotalRevenueForCurrentDay();
 
         // rcv1
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         layoutManager.setReverseLayout(true);
         layoutManager.setStackFromEnd(true);
         binding.rcvOrderConfirmation.setLayoutManager(layoutManager);
@@ -65,7 +65,7 @@ public class Fragment_Admin_Home extends Fragment {
         binding.rcvOrderConfirmation.setAdapter(orderConfirmationAdapter);
 
         // rcv2
-        LinearLayoutManager layoutManager1 = new LinearLayoutManager(getActivity());
+        LinearLayoutManager layoutManager1 = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         layoutManager1.setReverseLayout(true);
         layoutManager1.setStackFromEnd(true);
         binding.rcvPaymentConfirmation.setLayoutManager(layoutManager1);
@@ -90,7 +90,7 @@ public class Fragment_Admin_Home extends Fragment {
 
         FirebaseDatabase.getInstance().getReference().child("Bill")
                 .orderByChild("purchase_Date").equalTo(currentDate)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
+                .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         double totalRevenue = 0;
