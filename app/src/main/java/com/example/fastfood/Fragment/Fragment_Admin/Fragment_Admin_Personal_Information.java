@@ -13,9 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.fastfood.List_Activity.Activity_Login.Main_Login;
+import com.example.fastfood.List_Activity.Main_Activity.Activity_changeInfo_admin;
 import com.example.fastfood.List_Activity.Main_Activity.ChangePass_Activity_Admin;
-import com.example.fastfood.List_Activity.Main_Activity.Changepassword_Activity;
-import com.example.fastfood.R;
+
 import com.example.fastfood.databinding.FragmentAdminPersonalInformationBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -67,6 +67,12 @@ public class Fragment_Admin_Personal_Information extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), ChangePass_Activity_Admin.class));
+            }
+        });
+        binding.ChangeinformationAdminInformation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Activity_changeInfo_admin.class));
             }
         });
         return view;

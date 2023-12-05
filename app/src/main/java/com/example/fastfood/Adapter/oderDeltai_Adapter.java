@@ -93,5 +93,4 @@ public class oderDeltai_Adapter extends FirebaseRecyclerAdapter<Cart, oderDeltai
             quantity_oderDealtai = itemView.findViewById(R.id.quantity_oderDealtai);
         }
     }
-
 }

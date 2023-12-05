@@ -41,8 +41,9 @@ public class Changepassword_Activity extends AppCompatActivity {
         binding.backChangepassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Changepassword_Activity.this, MainActivity_User.class);
-                startActivity(intent);
+                //Intent intent = new Intent(Changepassword_Activity.this, MainActivity_User.class);
+                //startActivity(intent);
+                finish();
             }
         });
         binding.btnChangepassword.setOnClickListener(new View.OnClickListener() {
