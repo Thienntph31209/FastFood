@@ -10,6 +10,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -132,22 +133,33 @@ public class Product_Manager extends AppCompatActivity {
                 String data_id = id.getText().toString().trim();
                 String data_name = name.getText().toString().trim();
                 String data_describe = describe.getText().toString().trim();
-                int data_price = Integer.parseInt(price.getText().toString().trim());
+                String data_price = price.getText().toString().trim(); // Sử dụng String thay vì int để kiểm tra rỗng
                 String data_img = img.getText().toString().trim();
                 String data_typeId = type_id.getText().toString().trim();
 
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Product");
-                String key = databaseReference.push().getKey();
-                //
-                databaseReference.child(key).child("id").setValue(data_id);
-                databaseReference.child(key).child("Describe").setValue(data_describe);
-                databaseReference.child(key).child("Img_Product").setValue(data_img);
-                databaseReference.child(key).child("Name").setValue(data_name);
-                databaseReference.child(key).child("Price").setValue(data_price);
-                databaseReference.child(key).child("Product_Type_Id").setValue(data_typeId);
-                dialog.dismiss();
+                // Kiểm tra nếu bất kỳ trường nào rỗng, không thêm sản phẩm
+                if (TextUtils.isEmpty(data_id) || TextUtils.isEmpty(data_name) ||
+                        TextUtils.isEmpty(data_describe) || TextUtils.isEmpty(data_price) ||
+                        TextUtils.isEmpty(data_img) || TextUtils.isEmpty(data_typeId)) {
+
+                    Toast.makeText(getApplicationContext(), "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Nếu các trường không rỗng, thực hiện thêm sản phẩm vào cơ sở dữ liệu Firebase
+                    int intPrice = Integer.parseInt(data_price);
+
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Product");
+                    String key = databaseReference.push().getKey();
+                    databaseReference.child(key).child("id").setValue(data_id);
+                    databaseReference.child(key).child("Describe").setValue(data_describe);
+                    databaseReference.child(key).child("Img_Product").setValue(data_img);
+                    databaseReference.child(key).child("Name").setValue(data_name);
+                    databaseReference.child(key).child("Price").setValue(intPrice);
+                    databaseReference.child(key).child("Product_Type_Id").setValue(data_typeId);
+                    dialog.dismiss();
+                }
             }
         });
+
         dialog.show();
     }
 

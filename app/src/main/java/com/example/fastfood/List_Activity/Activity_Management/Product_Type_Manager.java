@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.fastfood.Adapter.Product_Type_Adapter;
 import com.example.fastfood.List_Activity.Main_Activity.MainActivity_Admin;
@@ -82,16 +84,22 @@ public class Product_Type_Manager extends AppCompatActivity {
                 String data_id = id.getText().toString().trim();
                 String data_name = name.getText().toString().trim();
                 String data_img = img.getText().toString().trim();
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Product_Type");
-                String key = databaseReference.push().getKey();
-                //
-                databaseReference.child(key).child("Product_Type_Id").setValue(data_id);
-                databaseReference.child(key).child("Img_Product_Type").setValue(data_img);
-                databaseReference.child(key).child("Type_Name").setValue(data_name);
-                //
-                dialog.dismiss();
+
+                // Kiểm tra nếu bất kỳ trường nào rỗng, không thêm dữ liệu
+                if (TextUtils.isEmpty(data_id) || TextUtils.isEmpty(data_name) || TextUtils.isEmpty(data_img)) {
+                    Toast.makeText(getApplicationContext(), "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Nếu các trường không rỗng, thêm dữ liệu vào cơ sở dữ liệu Firebase
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Product_Type");
+                    String key = databaseReference.push().getKey();
+                    databaseReference.child(key).child("Product_Type_Id").setValue(data_id);
+                    databaseReference.child(key).child("Img_Product_Type").setValue(data_img);
+                    databaseReference.child(key).child("Type_Name").setValue(data_name);
+                    dialog.dismiss();
+                }
             }
         });
+
         dialog.show();
     }
 
