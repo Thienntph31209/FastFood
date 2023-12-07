@@ -3,6 +3,8 @@ package com.example.fastfood.List_Activity.Main_Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -17,12 +19,14 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Activity_history extends AppCompatActivity {
     private ActivityHistoryBinding binding;
     History_adapter adapter;
+    private String userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
         binding = ActivityHistoryBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        userId = getUserIdFromSharedPreferences();
         binding.btnBackHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -34,8 +38,14 @@ public class Activity_history extends AppCompatActivity {
                 new FirebaseRecyclerOptions.Builder<Bill_Detail>()
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Bill_Detail"),Bill_Detail.class)
                         .build();
-        adapter = new History_adapter(options);
+        adapter = new History_adapter(options, this);
+        adapter.setUserId(userId);
         binding.rcvHistory.setAdapter(adapter);
+    }
+
+    private String getUserIdFromSharedPreferences(){
+        SharedPreferences sharedPreferences = this.getSharedPreferences("UserData", Activity.MODE_PRIVATE);
+        return sharedPreferences.getString("userId","");
     }
 
     @Override

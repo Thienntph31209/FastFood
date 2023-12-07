@@ -34,8 +34,9 @@ import java.util.UUID;
 public class History_adapter extends FirebaseRecyclerAdapter<Bill_Detail, History_adapter.myViewHolder> {
     private String userId;
     private Context context;
-    public History_adapter(@NonNull FirebaseRecyclerOptions<Bill_Detail> options) {
+    public History_adapter(@NonNull FirebaseRecyclerOptions<Bill_Detail> options, Context context) {
         super(options);
+        this.context = context;
     }
     public void setUserId(String userId){
         this.userId = userId;
@@ -69,6 +70,13 @@ public class History_adapter extends FirebaseRecyclerAdapter<Bill_Detail, Histor
             }
         });
 
+        holder.btn_order_history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addToCart(model);
+            }
+        });
+
     }
 
     @NonNull
@@ -93,7 +101,7 @@ public class History_adapter extends FirebaseRecyclerAdapter<Bill_Detail, Histor
             btn_order_history = itemView.findViewById(R.id.btn_reOrder_history);
         }
     }
-    /*private void addToCart(Product product){
+    private void addToCart(Bill_Detail billDetail){
         DatabaseReference cartRef = FirebaseDatabase.getInstance().getReference().child("Cart").push();
         String cartId = UUID.randomUUID().toString();
 
@@ -101,20 +109,19 @@ public class History_adapter extends FirebaseRecyclerAdapter<Bill_Detail, Histor
 
         cartItem.setCart_Id(cartId);
         cartItem.setUser_Id(userId);
-        cartItem.setId(product.getId());
+        cartItem.setId(billDetail.getId());
         cartItem.setCart_quantity(1);
         cartRef.setValue(cartItem)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(context, "Thêm sản phẩm vào giỏ hàng thành công", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Thêm sản phẩm vào lại giỏ hàng thành công", Toast.LENGTH_SHORT).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.e("addToCart", "Thêm sản phẩm vào giỏ hàng không thành công: " + e.getMessage());
                         Toast.makeText(context, "Thêm sản phẩm vào giỏ hàng không thành công", Toast.LENGTH_SHORT).show();
                     }
                 });
-    }*/
+    }
 }

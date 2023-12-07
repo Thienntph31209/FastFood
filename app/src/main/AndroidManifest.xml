@@ -65,12 +65,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".List_Activity.Main_Activity.Confirmed_order"
-            android:exported="false" />
-        <activity
-            android:name=".List_Activity.Main_Activity.oderDeatil"
-            android:exported="false" />
-        <activity
             android:name=".List_Activity.Activity_Login.Confirm"
             android:exported="false" />
         <activity
