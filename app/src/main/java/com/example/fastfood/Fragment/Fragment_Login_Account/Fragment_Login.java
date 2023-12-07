@@ -226,7 +226,6 @@ public class Fragment_Login extends Fragment {
         editor.putString("password", password);
         editor.putString("role", String.valueOf(role));
         editor.apply();
-        Log.d("LoginRef", "Đã lưu vào SharedPreferences - Username: " + username + " Password: " + password);
     }
 
     private void checkLoginStatus() {
