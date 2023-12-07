@@ -7,16 +7,22 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fastfood.List_Activity.Activity_Management.Bill_Detail_Manager;
+import com.example.fastfood.List_Activity.Main_Activity.Bill_Detail_Activity;
+import com.example.fastfood.List_Activity.Main_Activity.Confirmed_order;
 import com.example.fastfood.Model.Bill;
+import com.example.fastfood.Model.Notification;
 import com.example.fastfood.Model.User;
 import com.example.fastfood.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,6 +31,10 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.UUID;
 
 public class OrderConfirmation_Adapter extends FirebaseRecyclerAdapter<Bill, OrderConfirmation_Adapter.myViewHolder> {
 
@@ -36,7 +46,7 @@ public class OrderConfirmation_Adapter extends FirebaseRecyclerAdapter<Bill, Ord
     protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull Bill model) {
         holder.billId_Manager.setText(model.getBill_Id());
         holder.Total_Manager.setText(String.valueOf(model.getTotal_Amount()) + " VNĐ");
-        holder.DateTime_Manager.setText(model.getPurchase_Date());
+        holder.DateTime_Manager.setText(model.getPurchase_Date() + " " + model.getTime());
         holder.userId_Manager.setText(model.getAddress());
         holder.Note_Manager.setText(model.getNote());
         int status = model.getStatus();
@@ -74,7 +84,7 @@ public class OrderConfirmation_Adapter extends FirebaseRecyclerAdapter<Bill, Ord
             @Override
             public void onClick(View view) {
                 String billId = model.getBill_Id();
-                Intent intent = new Intent(view.getContext(), Bill_Detail_Manager.class);
+                Intent intent = new Intent(view.getContext(), Bill_Detail_Activity.class);
                 intent.putExtra("billId", billId);
                 view.getContext().startActivity(intent);
             }
@@ -113,6 +123,7 @@ public class OrderConfirmation_Adapter extends FirebaseRecyclerAdapter<Bill, Ord
             public void onClick(View view) {
                 DatabaseReference billRef = FirebaseDatabase.getInstance().getReference().child("Bill").child(model.getBill_Id());
                 billRef.child("status").setValue(1);
+                addNotification(model);
             }
         });
     }
@@ -141,6 +152,22 @@ public class OrderConfirmation_Adapter extends FirebaseRecyclerAdapter<Bill, Ord
             Note_Manager = itemView.findViewById(R.id.Note_Manager);
         }
 
+    }
+
+    private void addNotification(Bill bill){
+        DatabaseReference notificationRef = FirebaseDatabase.getInstance().getReference().child("Notification").push();
+        String notifi_Id = UUID.randomUUID().toString();
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy");
+        String purchase_Date = dateFormat.format(calendar.getTime());
+
+        Notification notification = new Notification();
+        notification.setNotification_Id(notifi_Id);
+        notification.setContent_Notification("Đơn hàng " + bill.getBill_Id() + " đã được xác nhận");
+        notification.setSend_Date(purchase_Date);
+        notification.setUser_Id(bill.getUser_Id());
+
+        notificationRef.setValue(notification);
     }
 
 }

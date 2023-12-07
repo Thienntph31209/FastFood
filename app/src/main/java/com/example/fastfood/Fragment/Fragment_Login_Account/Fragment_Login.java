@@ -14,6 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,12 +60,14 @@ public class Fragment_Login extends Fragment {
     }
     private FragmentLoginBinding binding;
     private GoogleSignInClient mGoogleSignInClient;
+    float v = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentLoginBinding.inflate(inflater,container,false);
         View view = binding.getRoot();
+        animation_login();
 
         // đăng nhập gmail
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -105,6 +109,49 @@ public class Fragment_Login extends Fragment {
         });
 
         // đăng nhập ở màn chính
+
+        binding.edLoginUserName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(charSequence.length() == 0){
+                    binding.inLoginUserName.setError("Vui lòng nhập tên đăng nhập");
+                }else{
+                    binding.inLoginUserName.setError(null);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        binding.edLoginPassWord.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(charSequence.length() == 0){
+                    binding.inLoginPassWord.setError("Vui lòng nhập mật khẩu");
+                }else{
+                    binding.inLoginPassWord.setError(null);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference().child("User");
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,9 +162,13 @@ public class Fragment_Login extends Fragment {
                 if (userName.isEmpty() || password.isEmpty()) {
                     if (userName.isEmpty()) {
                         binding.inLoginUserName.setError("Vui lòng nhập tên đăng nhập");
+                    } else {
+                        binding.inLoginUserName.setError(null); // Ẩn biểu tượng lỗi
                     }
                     if (password.isEmpty()) {
                         binding.inLoginPassWord.setError("Vui lòng nhập mật khẩu");
+                    } else {
+                        binding.inLoginPassWord.setError(null); // Ẩn biểu tượng lỗi
                     }
                 }else{
                     databaseRef.orderByChild("user_Name").equalTo(userName).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -267,4 +318,25 @@ public class Fragment_Login extends Fragment {
         request.setParameters(parameters);
         request.executeAsync();
     }
+
+    private void animation_login(){
+        binding.inLoginUserName.setTranslationX(800);
+        binding.inLoginPassWord.setTranslationX(800);
+        binding.btnLogin.setTranslationX(800);
+        binding.facebook.setTranslationY(300);
+        binding.gmail.setTranslationY(300);
+
+        binding.inLoginUserName.setAlpha(v);
+        binding.inLoginPassWord.setAlpha(v);
+        binding.btnLogin.setAlpha(v);
+        binding.facebook.setAlpha(v);
+        binding.gmail.setAlpha(v);
+
+        binding.inLoginUserName.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(300).start();
+        binding.inLoginPassWord.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(500).start();
+        binding.btnLogin.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(500).start();
+        binding.facebook.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(700).start();
+        binding.gmail.animate().translationY(0).alpha(1).setDuration(1200).setStartDelay(700).start();
+    }
+
 }

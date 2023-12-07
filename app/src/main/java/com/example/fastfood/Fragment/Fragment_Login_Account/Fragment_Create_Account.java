@@ -7,7 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.renderscript.ScriptGroup;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +39,69 @@ public class Fragment_Create_Account extends Fragment {
         View view = binding.getRoot();
         animation_login();
         // xử lý đăng ký tài khoản
+        binding.edCreateUserName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(charSequence.length() == 0){
+                    binding.inCreateUserName.setError("Vui lòng nhập username");
+                }else{
+                    binding.inCreateUserName.setError(null);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        binding.edCreatePassWord.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(charSequence.length() == 0){
+                    binding.inCreatePassWord.setError("Vui lòng nhập mật khẩu");
+                }else{
+                    binding.inCreatePassWord.setError(null);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        binding.edCreateRePassWord.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(charSequence.length() == 0){
+                    binding.inCreateRePassWord.setError("Vui lòng nhập mật khẩu");
+                }else{
+                    binding.inCreateRePassWord.setError(null);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("User");
 
         binding.btnSignIn.setOnClickListener(new View.OnClickListener() {

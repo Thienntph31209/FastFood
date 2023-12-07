@@ -1,5 +1,6 @@
 package com.example.fastfood.Fragment.Fragment_Admin;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,8 @@ import android.view.ViewGroup;
 import com.example.fastfood.Adapter.Bill_Adapter;
 import com.example.fastfood.Adapter.OrderConfirmation_Adapter;
 import com.example.fastfood.Adapter.PaymentConfirmation_Adapter;
+import com.example.fastfood.List_Activity.Main_Activity.Order_Confirmation_Activity;
+import com.example.fastfood.List_Activity.Main_Activity.Payment_Confirmation_Activity;
 import com.example.fastfood.Model.Bill;
 import com.example.fastfood.R;
 import com.example.fastfood.databinding.FragmentAdminBillBinding;
@@ -79,6 +82,20 @@ public class Fragment_Admin_Home extends Fragment {
         paymentConfirmationAdapter = new PaymentConfirmation_Adapter(optionsForRcv2);
         binding.rcvPaymentConfirmation.setAdapter(paymentConfirmationAdapter);
 
+        binding.SeeDetails1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Order_Confirmation_Activity.class));
+            }
+        });
+
+        binding.SeeDetails2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Payment_Confirmation_Activity.class));
+            }
+        });
+
         return view;
     }
 
@@ -126,4 +143,5 @@ public class Fragment_Admin_Home extends Fragment {
         orderConfirmationAdapter.stopListening();
         paymentConfirmationAdapter.stopListening();
     }
+
 }

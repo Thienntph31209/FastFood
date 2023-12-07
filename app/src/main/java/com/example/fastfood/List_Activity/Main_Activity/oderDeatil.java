@@ -151,9 +151,8 @@ public class oderDeatil extends AppCompatActivity implements oderDeltai_Adapter.
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         String purchase_Date = dateFormat.format(calendar.getTime());
 
-        int hour = calendar.get(Calendar.HOUR_OF_DAY); // Lấy giờ trong 24 giờ
-        // Chuyển đổi giờ thành chuỗi
-        String hourString = String.valueOf(hour);
+        SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm:ss");
+        String hourString = hourFormat.format(calendar.getTime());
 
         int totalCost = Integer.parseInt(binding.TotailOderDeatail.getText().toString());
         Bill bill = new Bill(bill_Id, userId, purchase_Date,address,totalCost,0,"...",hourString);

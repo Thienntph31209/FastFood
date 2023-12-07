@@ -22,7 +22,7 @@ public class Confirm extends AppCompatActivity {
         binding.TryOderConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Confirm.this, MainActivity_User.class));
+                startActivity(new Intent(Confirm.this, Main_Login.class));
             }
         });
     }

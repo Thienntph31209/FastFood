@@ -47,8 +47,8 @@ public class Bill_Detail_Adapter extends FirebaseRecyclerAdapter<Bill_Detail, Bi
     protected void onBindViewHolder(@NonNull myViewHolder holder, @SuppressLint("RecyclerView") int position, @NonNull Bill_Detail model) {
         holder.Billdetailid_BillDetail.setText(model.getInvoice_detail_id());
         holder.Quantity_BillDetail.setText(String.valueOf(model.getCart_quantity()));
-        holder.Price_BillDetail.setText(String.valueOf(model.getPrice()) + ".000 VNĐ");
-        holder.TotalDetail_BillDetail.setText(String.valueOf(model.getTotal_details()) + ".000 VNĐ");
+        holder.Price_BillDetail.setText(String.valueOf(model.getPrice()) + " VNĐ");
+        holder.TotalDetail_BillDetail.setText(String.valueOf(model.getTotal_details()) + " VNĐ");
         String productId = model.getId();
         DatabaseReference productRef = FirebaseDatabase.getInstance().getReference().child("Product");
         Query query = productRef.orderByChild("id").equalTo(productId);

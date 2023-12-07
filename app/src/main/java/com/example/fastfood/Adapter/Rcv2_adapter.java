@@ -111,7 +111,6 @@ public class Rcv2_adapter extends FirebaseRecyclerAdapter<Product,Rcv2_adapter.V
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.e("addToCart", "Thêm sản phẩm vào giỏ hàng không thành công: " + e.getMessage());
                         Toast.makeText(context, "Thêm sản phẩm vào giỏ hàng không thành công", Toast.LENGTH_SHORT).show();
                     }
                 });

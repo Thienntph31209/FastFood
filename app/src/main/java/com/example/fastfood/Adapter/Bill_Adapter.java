@@ -23,8 +23,8 @@ public class Bill_Adapter extends FirebaseRecyclerAdapter<Bill, Bill_Adapter.myV
     @Override
     protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull Bill model) {
         holder.billId_Manager.setText(model.getBill_Id());
-        holder.Total_Manager.setText(String.valueOf(model.getTotal_Amount()) + ".000 VNĐ");
-        holder.DateTime_Manager.setText(model.getPurchase_Date() + model.getTime());
+        holder.Total_Manager.setText(String.valueOf(model.getTotal_Amount()) + " VNĐ");
+        holder.DateTime_Manager.setText(model.getPurchase_Date() + " " + model.getTime());
         holder.userId_Manager.setText(model.getUser_Id());
         int status = model.getStatus();
         if(status == 0){

@@ -15,6 +15,24 @@
         android:theme="@style/Theme.FastFood"
         tools:targetApi="31">
         <activity
+            android:name=".List_Activity.Main_Activity.Statistical_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".List_Activity.Main_Activity.Bill_Detail1_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".List_Activity.Main_Activity.Bill_Detail_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".List_Activity.Main_Activity.Payment_Confirmation_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".List_Activity.Main_Activity.Order_Confirmation_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".List_Activity.Main_Activity.Bill_History"
+            android:exported="false" />
+        <activity
             android:name=".List_Activity.Activity_Management.Bill_Detail_Manager"
             android:exported="false" />
         <activity
@@ -58,8 +76,9 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".List_Activity.Main_Activity.ChangePass_Activity_Admin"
-            android:exported="false"/>
+        <activity
+            android:name=".List_Activity.Main_Activity.ChangePass_Activity_Admin"
+            android:exported="false" />
         <activity
             android:name=".List_Activity.Activity_Login.Confirm"
             android:exported="false" />
@@ -80,7 +99,7 @@
             android:exported="false" />
         <activity
             android:name=".List_Activity.Main_Activity.Activity_changeInfo"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".List_Activity.Activity_Management.Product_Manager"
             android:exported="false" />

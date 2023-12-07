@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.fastfood.List_Activity.Activity_Login.Main_Login;
 import com.example.fastfood.List_Activity.Main_Activity.Activity_changeInfo;
+import com.example.fastfood.List_Activity.Main_Activity.Bill_History;
 import com.example.fastfood.List_Activity.Main_Activity.Changepassword_Activity;
 import com.example.fastfood.R;
 import com.google.firebase.database.DataSnapshot;
@@ -29,7 +30,7 @@ import com.squareup.picasso.Picasso;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Fragment_User_Personal_Information extends Fragment {
-    CardView btn_logout_user, btn_changePass, btn_changeInfo;
+    CardView btn_logout_user, btn_changePass, btn_changeInfo, btn_bill_user;
     CircleImageView avt_user;
     TextView name_user;
     public Fragment_User_Personal_Information() {
@@ -43,6 +44,7 @@ public class Fragment_User_Personal_Information extends Fragment {
         btn_logout_user = v.findViewById(R.id.btn_logOut_user);
         btn_changePass = v.findViewById(R.id.btn_change_pass_user);
         btn_changeInfo = v.findViewById(R.id.btn_change_info_user);
+        btn_bill_user = v.findViewById(R.id.btn_bill_user);
         avt_user = v.findViewById(R.id.img_user);
         name_user = v.findViewById(R.id.name_user);
         String savedUsername = getUsernameFromSharedPreferences();
@@ -83,6 +85,12 @@ public class Fragment_User_Personal_Information extends Fragment {
             public void onClick(View view) {
                 Toast.makeText(getActivity(),"Logout", Toast.LENGTH_SHORT).show();
                 logout();
+            }
+        });
+        btn_bill_user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Bill_History.class));
             }
         });
         return v;

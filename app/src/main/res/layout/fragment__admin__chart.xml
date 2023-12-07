@@ -25,27 +25,40 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:orientation="vertical">
-                <TextView
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/money"/>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tổng doanh thu"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:textColor="#7BBD2D"
-                    android:fontFamily="@font/open_sans"
-                    android:gravity="center"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="300.000 VNĐ"
-                    android:textSize="25dp"
-                    android:textStyle="bold"
-                    android:textColor="#FF0000"
-                    android:fontFamily="@font/open_sans"
-                    android:id="@+id/total"
-                    android:gravity="center"/>
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tổng Doanh Thu"
+                        android:textSize="25dp"
+                        android:textStyle="bold"
+                        android:textColor="#7BBD2D"
+                        android:fontFamily="@font/open_sans"
+                        android:gravity="center"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="0 VNĐ"
+                        android:textSize="25dp"
+                        android:textStyle="bold"
+                        android:textColor="#FF0000"
+                        android:fontFamily="@font/open_sans"
+                        android:id="@+id/total"
+                        android:gravity="center"/>
+                </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -65,14 +78,33 @@
                 android:padding="10dp"
                 android:orientation="vertical">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Order Confirmation"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:textColor="#000"
-                    android:fontFamily="@font/open_sans"/>
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Order Confirmation"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:textColor="#000"
+                        android:fontFamily="@font/open_sans"/>
+
+                    <TextView
+                        android:id="@+id/SeeDetails1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans"
+                        android:gravity="end"
+                        android:text="Xem chi tiết >>"
+                        android:textColor="#9C27B0"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        tools:ignore="TextSizeCheck" />
+                </LinearLayout>
+
+
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
@@ -95,14 +127,31 @@
                 android:padding="10dp"
                 android:orientation="vertical">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Payment confirmation"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:textColor="#000"
-                    android:fontFamily="@font/open_sans"/>
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Payment confirmation"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:textColor="#000"
+                        android:fontFamily="@font/open_sans"/>
+
+                    <TextView
+                        android:id="@+id/SeeDetails2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans"
+                        android:gravity="end"
+                        android:text="Xem chi tiết >>"
+                        android:textColor="#9C27B0"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        tools:ignore="TextSizeCheck" />
+                </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"

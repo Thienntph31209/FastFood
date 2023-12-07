@@ -8,8 +8,6 @@
     android:background="#FFE6FF"
     tools:context=".Fragment.Fragment_Admin.Fragment_Admin_Home">
 
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,7 +36,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Top sản phẩm bán chạy"
+                android:text="Best sales"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:textColor="#7BBD2D"
