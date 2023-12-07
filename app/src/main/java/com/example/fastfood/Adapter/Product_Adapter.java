@@ -45,7 +45,7 @@ public class Product_Adapter extends FirebaseRecyclerAdapter<Product,Product_Ada
         holder.tv_describe_product.setText(model.getDescribe());
         holder.tv_pdt_product.setText(model.getProduct_Type_Id());
         holder.tv_id_product.setText(model.getId());
-        holder.tv_price_product.setText(String.format("%d",model.getPrice())+"K");
+        holder.tv_price_product.setText(String.format("%d",model.getPrice())+" đ");
         Glide.with(holder.img_product.getContext())
                 .load(model.getImg_Product())
                 .placeholder(com.firebase.ui.database.R.drawable.common_google_signin_btn_icon_dark)

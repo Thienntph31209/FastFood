@@ -11,25 +11,25 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.fastfood.R;
-import com.example.fastfood.databinding.ActivityChangeInfoBinding;
+import com.example.fastfood.databinding.ActivityChangeInfoAdminBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class Activity_changeInfo extends AppCompatActivity {
-    private ActivityChangeInfoBinding binding;
+public class Activity_changeInfo_admin extends AppCompatActivity {
+    private ActivityChangeInfoAdminBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_change_info);
-        binding = ActivityChangeInfoBinding.inflate(getLayoutInflater());
+        setContentView(R.layout.activity_change_info_admin);
+        binding = ActivityChangeInfoAdminBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        binding.btnBackInfoUser.setOnClickListener(new View.OnClickListener() {
+        binding.btnBackInfoAd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    finish();
+                startActivity(new Intent(getApplicationContext(), MainActivity_User.class));
             }
         });
         String savedUsername = getUsernameFromSharedPreferences();
@@ -41,16 +41,16 @@ public class Activity_changeInfo extends AppCompatActivity {
                     for (DataSnapshot snapshot1 : snapshot.getChildren()){
                         String userId = snapshot1.getKey();
                         String name = snapshot1.child("full_Name").getValue(String.class);
-                        binding.edFullNameChange.setText(name);
+                        binding.edFullNameChangeAdmin.setText(name);
                         String userName = snapshot1.child("user_Name").getValue(String.class);
-                        binding.edUserNameChange.setText(userName);
+                        binding.edUserNameChangeAdmin.setText(userName);
                         String email = snapshot1.child("email").getValue(String.class);
-                        binding.edEmailChange.setText(email);
+                        binding.edEmailChangeAdmin.setText(email);
                         String phoneNumber = String.valueOf(snapshot1.child("phone_Number").getValue(Integer.class));
-                        binding.edPhoneNumberChange.setText(phoneNumber);
+                        binding.edPhoneNumberChangeAdmin.setText(phoneNumber);
 
                         String address = snapshot1.child("address").getValue(String.class);
-                        binding.edAddRessChange.setText(address);
+                        binding.edAddRessChangeAdmin.setText(address);
 
                     }
                 }
@@ -60,7 +60,7 @@ public class Activity_changeInfo extends AppCompatActivity {
 
             }
         });
-        binding.btnSaveChange.setOnClickListener(new View.OnClickListener() {
+        binding.btnSaveChangeAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 changeInfo();
@@ -80,11 +80,11 @@ public class Activity_changeInfo extends AppCompatActivity {
                         String userId = snapshot1.getKey();
 
                         //lấy dl từ edittext
-                        String fullName = binding.edFullNameChange.getText().toString().trim();
-                        String userName = binding.edUserNameChange.getText().toString().trim();
-                        String email = binding.edEmailChange.getText().toString().trim();
-                        int phoneNumber = Integer.parseInt(binding.edPhoneNumberChange.getText().toString().trim());
-                        String address = binding.edAddRessChange.getText().toString().trim();
+                        String fullName = binding.edFullNameChangeAdmin.getText().toString().trim();
+                        String userName = binding.edUserNameChangeAdmin.getText().toString().trim();
+                        String email = binding.edEmailChangeAdmin.getText().toString().trim();
+                        int phoneNumber = Integer.parseInt(binding.edPhoneNumberChangeAdmin.getText().toString().trim());
+                        String address = binding.edAddRessChangeAdmin.getText().toString().trim();
 
                         //thực hiện đổi thông tin
                         userRef.child(userId).child("full_Name").setValue(fullName);

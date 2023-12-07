@@ -31,8 +31,7 @@ public class ChangePass_Activity_Admin extends AppCompatActivity {
         binding.backChangepasswordAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ChangePass_Activity_Admin.this, MainActivity_Admin.class);
-                startActivity(intent);
+                finish();
             }
         });
         binding.btnChangepasswordAd.setOnClickListener(new View.OnClickListener() {

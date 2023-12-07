@@ -33,6 +33,12 @@
             android:name=".List_Activity.Main_Activity.Bill_History"
             android:exported="false" />
         <activity
+            android:name=".List_Activity.Main_Activity.Activity_history"
+            android:exported="false" />
+        <activity
+            android:name=".List_Activity.Main_Activity.Activity_changeInfo_admin"
+            android:exported="false" />
+        <activity
             android:name=".List_Activity.Activity_Management.Bill_Detail_Manager"
             android:exported="false" />
         <activity
@@ -76,9 +82,8 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".List_Activity.Main_Activity.ChangePass_Activity_Admin"
-            android:exported="false" />
+        <activity android:name=".List_Activity.Main_Activity.ChangePass_Activity_Admin"
+            android:exported="false"/>
         <activity
             android:name=".List_Activity.Activity_Login.Confirm"
             android:exported="false" />
@@ -99,7 +104,7 @@
             android:exported="false" />
         <activity
             android:name=".List_Activity.Main_Activity.Activity_changeInfo"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".List_Activity.Activity_Management.Product_Manager"
             android:exported="false" />
