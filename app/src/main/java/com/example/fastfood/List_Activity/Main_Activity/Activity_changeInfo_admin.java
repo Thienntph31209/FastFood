@@ -29,7 +29,7 @@ public class Activity_changeInfo_admin extends AppCompatActivity {
         binding.btnBackInfoAd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), MainActivity_User.class));
+                finish();
             }
         });
         String savedUsername = getUsernameFromSharedPreferences();
