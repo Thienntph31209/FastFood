@@ -13,8 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.fastfood.List_Activity.Activity_Login.Main_Login;
+import com.example.fastfood.List_Activity.Main_Activity.Activity_changeInfo_admin;
 import com.example.fastfood.List_Activity.Main_Activity.ChangePass_Activity_Admin;
 import com.example.fastfood.List_Activity.Main_Activity.Changepassword_Activity;
+import com.example.fastfood.List_Activity.Main_Activity.Statistical_Activity;
 import com.example.fastfood.R;
 import com.example.fastfood.databinding.FragmentAdminPersonalInformationBinding;
 import com.google.firebase.database.DataSnapshot;
@@ -38,7 +40,7 @@ public class Fragment_Admin_Personal_Information extends Fragment {
         View view = binding.getRoot();
         String savedUsername = getUsernameFromSharedPreferences();
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("User");
-        userRef.orderByChild("user_Name").equalTo(savedUsername).addListenerForSingleValueEvent(new ValueEventListener() {
+        userRef.orderByChild("user_Name").equalTo(savedUsername).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
